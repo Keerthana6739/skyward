@@ -1,0 +1,323 @@
+
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+<nav class="navbar navbar-expand-lg navbar-light" style="margin-top: 40px;">
+    <div class="row">
+        <a href="#" class="p text-dark pr-2">Administration</a>
+        <p>/</p>
+        <a href="#" class="p text-dark pl-2">Booking Purpose</a>
+    </div>
+</nav>
+
+<nav class="navbar navbar-expand-lg navbar-light">
+    <div class="navbar-collapse">
+        <ul class="navbar-nav flex-column flex-lg-row">
+            <li class="nav-item">
+                <a class="nav-link" href="#">User</a>
+            </li>
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Ref template</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">SendGrid</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">T&C</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Manifest</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">SMS</a>
+            </li>
+            <li class="nav-item text-nowrap">
+                <a class="nav-link" href="#">Booking Purpose</a>
+            </li>
+          
+            <!-- View All Dropdown -->
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                    View All
+                </a>
+                <div class="dropdown-menu dropdown-align" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item" href="#">User</a>
+                    <a class="dropdown-item" href="#">Ref template</a>
+                    <a class="dropdown-item" href="#">SendGrid</a>
+                    <a class="dropdown-item" href="#">T&C</a>
+                    <a class="dropdown-item" href="#">Manifest</a>
+                    <a class="dropdown-item" href="#">SMS</a>
+                    <a class="dropdown-item" href="#">Booking Purpose</a>
+                    <a class="dropdown-item" href="#">Service Suppliers</a>
+                    <a class="dropdown-item" href="#">Services types</a>
+                    <a class="dropdown-item" href="#">Reports U/Permissions</a>
+                    <a class="dropdown-item" href="#">Reft words</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+  
+
+<div class="container-fluid ">
+    <!-- Header with search bar and buttons -->
+    
+    <div class="d-flex justify-content-between align-items-center mb-4 mt-8">
+        <div class="input-group w-50">
+            <input type="text" class="form-control" placeholder="Search...">
+           
+        </div>
+        
+        <div class="btn-group">
+            <button type="button" class="create_btn" data-toggle="modal" data-target="#createDstRestrictModal">
+                <i class="fa fa-plus"></i>   Create New
+            </button>
+            <button type="button" class="filter_btnn">
+                <i class="fa fa-arrow-down" style="opacity: 0.5;"></i>
+  Export
+            </button>
+            <button type="button" class="filter_btnn" data-toggle="modal" data-target="#filterDstRestrictModal">
+                <i class="fa fa-filter"></i> No Filter Applied
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead >
+            <tr>
+                
+                <th>Active</th>
+                <th>Name</th>
+              
+              
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-toggle="modal" data-target="#editDstRestrictCellModal" data-id="1" data-name="DstRestrict A" data-active="True">
+               <td>1</td>
+               <td>fdsds</td>
+              
+            
+            </tr>
+           
+           
+        </tbody>
+    </table>
+
+    <!-- Create DstRestrict Type Modal -->
+
+
+<div class="modal fade" id="createDstRestrictModal" tabindex="-1" aria-labelledby="createDstRestrictModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createDstRestrictModalLabel">Create </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+              <form method="post">
+                {% csrf_token %}
+                
+                <div class="row mb-3 ml-2">
+                    <div class="col-md-6">
+                         {{ form.active }}
+                        {{ form.active.label_tag }}
+                        
+                    </div>
+                </div>
+            
+                <div class="row mb-3">
+                    <div class="col-md-6">
+                        {{ form.name.label_tag }}
+                        {{ form.name }}
+                    </div>
+                </div>
+            
+                <div class="row mb-3">
+                    <div class="col-md-12">
+                        <button type="submit" class="save_btnn">Save</button>
+                    </div>
+                </div>
+            
+            </form>
+            
+            
+                  
+                  
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- Edit Cell Modal -->
+    <div class="modal fade" id="editDstRestrictCellModal" tabindex="-1" aria-labelledby="editDstRestrictCellModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+    
+                    <h5 class="modal-title" id="editDstRestrictCellModalLabel">Edit </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                  <form method="post">
+                    {% csrf_token %}
+                    
+                    <div class="row mb-3 ml-2">
+                        <div class="col-md-6">
+                            {{ form.active }}
+                            {{ form.active.label_tag }}
+                            
+                        </div>
+                    </div>
+                
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            {{ form.name.label_tag }}
+                            {{ form.name }}
+                        </div>
+                    </div>
+                
+                    <div class="row mb-3">
+                        <div class="col-md-12">
+                            <button type="submit" class="save_btnn">Save</button>
+                        </div>
+                    </div>
+                
+                </form>
+                
+                    
+                      
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--filter-->
+<div class="modal fade" id="filterDstRestrictModal" tabindex="-1" aria-labelledby="filterDstRestrictModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterDstRestrictModalLabel">Filter</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="filterDstRestrictForm" method="get" action="">
+                    <div class="row">
+                        <!-- Left side content, initially full width (12 columns) -->
+                        <div class="col-md-12" id="mainContent">
+                            <div class="">
+                                <label for="filterActiveStatus1" class="col-form-label col-4">Active</label>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                            <option value="">equal</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">Inactive</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                                            <option value="">All</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">Inactive</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="">
+                                <label for="filterName" class="col-form-label col-4">Name</label>
+                                <div class="row">
+                                    <div class="col-4">
+                                        <select class="form-control form-control-sm" id="filterNameOperator" name="name_operator">
+                                            <option value="">equal</option>
+                                            <option value="contains">Contains</option>
+                                            <option value="starts_with">Starts with</option>
+                                            <option value="ends_with">Ends with</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-4">
+                                        <input type="text" class="form-control form-control-sm" id="filterName" name="name">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row mt-3 mb-3">
+                                <div class="col-md-8">
+                                    <h6>Filter Name:</h6>
+                                    <p>If you wish to save this filter, write the name of the filter here and click 'Save filter'</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" name="filter_name">
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="submit" class="save_btnn mt-0">Save Filter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <button type="reset" class="cl_btn">Clear Filter</button>
+                                    <button type="reset" class="fil_btn"> Filter</button>
+                                    <!-- No need for Quick Filter button in this context -->
+                                </div>
+                            </div>
+                        </div>
+            
+                        <!-- Right side content, initially hidden (col-md-4) -->
+                        <div class="col-md-4 text-center" id="extraContent" style="display: none;border: 2px solid rgb(243, 243, 243); border-radius: 10px;padding: 5px;">
+                           <div class="container-fluid" >
+                            <div class="row ">
+                                <h6 class="mt-2">Sample1</h6>
+                                <button type="button" class="apply_btn ml-2">Apply</button>
+                                <button type="button" class="del_btn">Delete</button>
+                            </div>
+                           </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            
+            <script>
+                document.getElementById('filterDstRestrictForm').addEventListener('submit', function(event) {
+                    event.preventDefault(); // Prevent form submission
+                    var mainContent = document.getElementById('mainContent');
+                    var extraContent = document.getElementById('extraContent');
+                    
+                    if (mainContent.classList.contains('col-md-12')) {
+                        mainContent.classList.remove('col-md-12');
+                        mainContent.classList.add('col-md-8');
+                    }
+                    
+                    extraContent.style.display = 'block'; // Show extra content on the right
+                });
+            </script>
+            
+            
+            
+        </div>
+    </div>
+</div>
+
+
+
+{% endblock %}
+{% block script_block %}
+
+
+    
+    
+{% endblock %}
+
+
+

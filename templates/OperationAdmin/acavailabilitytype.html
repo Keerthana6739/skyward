@@ -1,0 +1,308 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+<div class="container-fluid mt-5">
+    <!-- Header with search bar and buttons -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="input-group w-50">
+            <input type="text" class="form-control" placeholder="Search...">
+           
+        </div>
+        
+        <div class="btn-group">
+            <button type="button" class="create_btn" data-toggle="modal" data-target="#createAcAvailabilitytypeModal">
+                <i class="fa fa-plus"></i>   Create New
+            </button>
+            <button type="button" class="filter_btnn">
+                <i class="fa fa-arrow-down" style="opacity: 0.5;"></i>
+  Export
+            </button>
+            <button type="button" class="filter_btnn" data-toggle="modal" data-target="#filterAcAvailabilitytypeModal">
+                <i class="fa fa-filter"></i>  Filter
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead >
+            <tr>
+                
+                <th>Active</th>
+                
+                
+                <th>Name</th>
+               
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-toggle="modal" data-target="#editAcAvailabilitytypeCellModal" data-id="1" data-name="AcAvailabilityload A" data-active="True">
+               <td>1</td>
+               <td>1.00</td>
+              
+               
+            </tr>
+           
+           
+        </tbody>
+    </table>
+
+    <!-- Create DstRestrict Type Modal -->
+
+
+<div class="modal fade" id="createAcAvailabilitytypeModal" tabindex="-1" aria-labelledby="createAcAvailabilitytypeLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createAcAvailabilitytypeLabel">Create A/C Availability Type</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" class="container">
+                    {% csrf_token %}
+                    <div class="row">
+                        <div class="col-md-6 mb-3">
+                          {{ form.active.label_tag }}
+                          {{ form.active }}
+                        </div>
+                      </div>
+                    <div class="row">
+                      <div class="col-md-6 mb-3">
+                        {{ form.name.label_tag }}
+                        {{ form.name }}
+                      </div>
+                      <div class="col-md-6 mb-3">
+                        {{ form.color.label_tag }}
+                        {{ form.color }}
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button type="submit" class="save_btnn">Save</button>
+                      </div>
+                    </div>
+                  </form>
+                  
+                  
+                  
+                  
+                  
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- Edit Cell Modal -->
+    <div class="modal fade" id="editAcAvailabilitytypeCellModal" tabindex="-1" aria-labelledby="editAcAvailabilitytypeCellModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editAcAvailabilitytypeModalLabel">Edit A/C Availability Type</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" class="container">
+                        {% csrf_token %}
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                              {{ form.active.label_tag }}
+                              {{ form.active }}
+                            </div>
+                          </div>
+                        <div class="row">
+                          <div class="col-md-6 mb-3">
+                            {{ form.name.label_tag }}
+                            {{ form.name }}
+                          </div>
+                          <div class="col-md-6 mb-3">
+                            {{ form.color.label_tag }}
+                            {{ form.color }}
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                          <div class="col-md-12">
+                            <button type="submit" class="save_btnn">Save</button>
+                          </div>
+                        </div>
+                      </form>
+                      
+                      
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--filter-->
+<div class="modal fade" id="filterAcAvailabilitytypeModal" tabindex="-1" aria-labelledby="filterAcAvailabilitytypeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="filterAcAvailabilitytypeModalLabel">Filter A/c Availability Type</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="filterAcAvailabilityForm" method="get" action="">
+                    <div class="">
+                        <label for="filterActiveStatus1" class="col-form-label col-4">Active</label>
+                        <div class="row mb-3">
+                            
+                            <div class="col-4">
+                                <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                    <option value="">equal</option>
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <select class="form-control form-control-sm" id="filterFromDateSort" name="sort_by2">
+                                    <option value="">All</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label for="filterActiveStatus1" class="col-form-label col-4">Name</label>
+                        <div class="row mb-3">
+                          
+                            <div class="col-4">
+                                <select class="form-control form-control-sm" id="filterFromDateSort" name="sort_by2">
+                                    <option value="">like</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" id="filterName" name="name" class="form-control form-control-sm">
+                        </div></div>
+                        <label for="filterActiveStatus1" class="col-form-label col-4">Color</label>
+                        <div class="row mb-3">
+                           
+                            <div class="col-4">
+                                <select class="form-control form-control-sm" id="filterFromDateSort" name="sort_by2">
+                                    <option value="">like</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                                <input type="text" id="filterName" name="name" class="form-control form-control-sm">
+                        </div></div>
+                       
+                      
+                   
+                    
+                        
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6>Filter Name:</h6>
+                                <p>If you wish to save this filter, write the name of the filter here and click 'Save filter'</p>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="filter_name">
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="save_btnn mt-0">Save Filter</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 ">
+                                <button type="reset" class="cl_btn ">Clear Filter</button>
+                                <button type="submit" class="fil_btn">Quick Filter</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+{% block script_block %}
+
+<script>
+    // JavaScript for handling modal interactions
+    
+    // Function to show or hide the service load details table
+    $('#toggleDstRestrictDetails').on('click', function() {
+        $('#DstRestrictDetailsTable').toggle();
+        
+        // Toggle icon based on table visibility
+        var icon = $(this).find('i');
+        if ($('#DstRestrictDetailsTable').is(':visible')) {
+            icon.removeClass('fa-plus').addClass('fa-minus');
+        } else {
+            icon.removeClass('fa-minus').addClass('fa-plus');
+        }
+    });
+    
+    // Function to show the second modal and handle its save button
+    function showAddCabinDetailsModal() {
+        $('#addCabinDetailsModal').modal('show');
+    }
+    
+    // Function to handle saving cabin details and returning to the first modal
+    function saveCabinDetails() {
+        // Retrieve values from the form
+        const cabinType = document.getElementById('cabinType').value;
+        const cabinQty = document.getElementById('cabinQty').value;
+        const maxChildren = document.getElementById('maxChildren').value;
+        const maxInfants = document.getElementById('maxInfants').value;
+    
+        // Add the details to the table in the first modal
+        const table = document.getElementById('DstRestrictDetailsTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td>${cabinType}</td>
+            <td>${cabinQty}</td>
+            <td>${maxChildren}</td>
+            <td>${maxInfants}</td>
+        `;
+    
+        // Hide the second modal
+        $('#addCabinDetailsModal').modal('hide');
+    
+        // Show the first modal and scroll to it
+        $('#createDstRestrictModal').modal('show');
+        $('html, body').animate({
+            scrollTop: $('#createDstRestrictModal').offset().top
+        }, 500); // Adjust the scroll speed if needed
+    }
+    
+    // Event listener for the "Save" button in the second modal
+    document.getElementById('saveCabinDetails').addEventListener('click', saveCabinDetails);
+    
+    // Event listener for the "Save" button in the first modal
+    document.getElementById('saveDstRestrict').addEventListener('click', function() {
+        $('#createDstRestrictModal').modal('hide');
+        showAddCabinDetailsModal();
+        
+        // Scroll to the second modal
+        $('html, body').animate({
+            scrollTop: $('#addCabinDetailsModal').offset().top
+        }, 500); // Adjust the scroll speed if needed
+    });
+</script>
+    
+    
+{% endblock %}
+
+
+

@@ -1,0 +1,312 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="container bg-white">
+<form method="post ">
+    {% csrf_token %}
+   <div class="form-group">
+    <div class="row">
+        
+        <div class="col-md-4">
+        {{ form.name.label_tag }}
+        {{ form.name }}
+    </div>
+    <div class="col-md-4">
+        {{ form.language.label_tag }}
+        {{ form.language }}
+    </div>
+    <div class="col-md-4">
+        {{ form.title_e_mail_subject.label_tag }}
+        {{ form.title_e_mail_subject }}
+    </div></div>
+    <div class="row mb-3">
+    <div class="col-md-4">
+        {{ form.show_services.label_tag }}
+        {{ form.show_services }}
+    </div>
+    <div class="col-md-4">
+        {{ form.title_note.label_tag }}
+        {{ form.title_note }}
+    </div></div>
+    <div class="row">
+        <div class="col-md-4">
+        {{ form.active.label_tag }}
+        {{ form.active }}
+    </div>
+    <div class="col-md-4">
+        {{ form.show_on_agents_crs.label_tag }}
+        {{ form.show_on_agents_crs }}
+    </div>
+    <div class="col-md-4">
+        {{ form.show_only_to_ticketed_pnr.label_tag }}
+        {{ form.show_only_to_ticketed_pnr }}
+    </div></div>
+<div class="row">
+    <div class="col-md-4">
+        {{ form.show_to_agent_pnr.label_tag }}
+        {{ form.show_to_agent_pnr }}
+    </div>
+    <div class="col-md-4">
+        {{ form.show_to_direct_cust_pnr.label_tag }}
+        {{ form.show_to_direct_cust_pnr }}
+    </div>
+    <div class="col-md-4">
+        {{ form.agent_logo.label_tag }}
+        {{ form.agent_logo }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.customer_agent_details.label_tag }}
+        {{ form.customer_agent_details }}
+    </div>
+    <div class="col-md-4">
+        {{ form.company_logo.label_tag }}
+        {{ form.company_logo }}
+    </div>
+    <div class="col-md-4">
+        {{ form.company_details.label_tag }}
+        {{ form.company_details }}
+    </div></div>
+    <div class="row mb-3">
+    <div class="col-md-4">
+        {{ form.qr_code.label_tag }}
+        {{ form.qr_code }}
+    </div>
+    <div class="col-md-4">
+        {{ form.personal_tickets.label_tag }}
+        {{ form.personal_tickets }}
+    </div></div>
+    <div class="row ">
+        
+    <div class="col-md-12">
+        {{ form.intro_text.label_tag }}
+        {{ form.intro_text }}
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-4">
+        {{ form.services_with_pricing.label_tag }}
+        {{ form.services_with_pricing }}
+    </div>
+    <div class="col-md-4">
+        {{ form.services_without_pricing.label_tag }}
+        {{ form.services_without_pricing }}
+    </div>
+    <div class="col-md-4">
+        {{ form.total.label_tag }}
+        {{ form.total }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.fare_basis.label_tag }}
+        {{ form.fare_basis }}
+    </div>
+    <div class="col-md-4">
+        {{ form.vat.label_tag }}
+        {{ form.vat }}
+    </div>
+    <div class="col-md-4">
+        {{ form.company_currency.label_tag }}
+        {{ form.company_currency }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.class_code.label_tag }}
+        {{ form.class_code }}
+    </div>
+    <div class="col-md-4">
+        {{ form.class_name.label_tag }}
+        {{ form.class_name }}
+    </div>
+    <div class="col-md-4">
+        {{ form.currency_name.label_tag }}
+        {{ form.currency_name }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.check_in_status.label_tag }}
+        {{ form.check_in_status }}
+    </div>
+    <div class="col-md-4">
+        {{ form.exchange_rate.label_tag }}
+        {{ form.exchange_rate }}
+    </div>
+    <div class="col-md-4">
+        {{ form.checkin_hhmm.label_tag }}
+        {{ form.checkin_hhmm }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.gds_rloc_instead_of_pnr.label_tag }}
+        {{ form.gds_rloc_instead_of_pnr }}
+    </div>
+    <div class="col-md-4">
+        {{ form.show_rack.label_tag }}
+        {{ form.show_rack }}
+    </div>
+    <div class="col-md-4">
+        {{ form.baggage.label_tag }}
+        {{ form.baggage }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.checkin.label_tag }}
+        {{ form.checkin }}
+    </div>
+    <div class="col-md-4">
+        {{ form.pnr_remarks.label_tag }}
+        {{ form.pnr_remarks }}
+    </div>
+    <div class="col-md-4">
+        {{ form.website_link.label_tag }}
+        {{ form.website_link }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.passengers.label_tag }}
+        {{ form.passengers }}
+    </div>
+    <div class="col-md-4">
+        {{ form.flight_rules_and_notifications.label_tag }}
+        {{ form.flight_rules_and_notifications }}
+    </div>
+    <div class="col-md-4">
+        {{ form.tax_breakdown.label_tag }}
+        {{ form.tax_breakdown }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.fare_breakdown.label_tag }}
+        {{ form.fare_breakdown }}
+    </div>
+    <div class="col-md-4">
+        {{ form.show_ptl.label_tag }}
+        {{ form.show_ptl }}
+    </div>
+    <div class="col-md-4">
+        {{ form.pnr_name.label_tag }}
+        {{ form.pnr_name }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.show_via.label_tag }}
+        {{ form.show_via }}
+    </div>
+    <div class="col-md-4">
+        {{ form.ssr.label_tag }}
+        {{ form.ssr }}
+    </div>
+    <div class="col-md-4">
+        {{ form.show_due.label_tag }}
+        {{ form.show_due }}
+    </div>
+</div>
+<div class="row">
+    <div class="col-md-4">
+        {{ form.pnr_log.label_tag }}
+        {{ form.pnr_log }}
+    </div>
+    <div class="col-md-4">
+        {{ form.show_ttl.label_tag }}
+        {{ form.show_ttl }}
+    </div>
+    <div class="col-md-4">
+        {{ form.receipts.label_tag }}
+        {{ form.receipts }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.invoices.label_tag }}
+        {{ form.invoices }}
+    </div>
+    <div class="col-md-4">
+        {{ form.deposits.label_tag }}
+        {{ form.deposits }}
+    </div>
+    <div class="col-md-4">
+        {{ form.vouchers_info.label_tag }}
+        {{ form.vouchers_info }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.ticket_terms.label_tag }}
+        {{ form.ticket_terms }}
+    </div>
+    <div class="col-md-4">
+        {{ form.environment.label_tag }}
+        {{ form.environment }}
+    </div>
+    <div class="col-md-4">
+        {{ form.e_ticket.label_tag }}
+        {{ form.e_ticket }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.accommodations.label_tag }}
+        {{ form.accommodations }}
+    </div>
+    <div class="col-md-4">
+        {{ form.terminals.label_tag }}
+        {{ form.terminals }}
+    </div>
+    <div class="col-md-4">
+        {{ form.full_pax_details.label_tag }}
+        {{ form.full_pax_details }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.seats.label_tag }}
+        {{ form.seats }}
+    </div>
+    <div class="col-md-4">
+        {{ form.cabin_class.label_tag }}
+        {{ form.cabin_class }}
+    </div>
+    <div class="col-md-4">
+        {{ form.short_pnr.label_tag }}
+        {{ form.short_pnr }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.show_etkt.label_tag }}
+        {{ form.show_etkt }}
+    </div>
+    <div class="col-md-4">
+        {{ form.hide_timings_for_non_flights.label_tag }}
+        {{ form.hide_timings_for_non_flights }}
+    </div>
+    <div class="col-md-4">
+        {{ form.cargo_tracking_code.label_tag }}
+        {{ form.cargo_tracking_code }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-4">
+        {{ form.gate_closing.label_tag }}
+        {{ form.gate_closing }}
+    </div>
+    <div class="col-md-4">
+        {{ form.baggage_drop.label_tag }}
+        {{ form.baggage_drop }}
+    </div></div>
+    <div class="row">
+    <div class="col-md-12">
+        {{ form.footer_text.label_tag }}
+        {{ form.footer_text }}
+    </div></div>
+    <div class="row mb-3">
+    <div class="col-md-6">
+        {{ form.attachment_1.label_tag }}
+        {{ form.attachment_1 }}
+    </div>
+    <div class="col-md-6">
+        {{ form.attachment_2.label_tag }}
+        {{ form.attachment_2 }}
+    </div></div>
+    <button type="submit" class="save_btnn">Save</button>
+</div>
+</form>
+</div></div>
+
+{% endblock %}

@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+<!-- jQuery -->
+<script type="text/javascript" src="https://code.jquery.com/jquery-3.5.1.js"></script>
+
+<div class="container mt-5">
+    <!-- Header with search bar and buttons -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="input-group w-50">
+            <input type="text" class="form-control" placeholder="Search...">
+        </div>
+        
+        <div class="btn-group">
+            <button type="button" class="create_btn" data-toggle="modal" data-target="#createAircraftTypeModal">
+                <i class="fa fa-plus"></i> Create New
+            </button>
+            <button type="button" class="filter_btnn">
+                <i class="fa fa-arrow-down" style="opacity: 0.5;"></i> Export
+            </button>
+            <button type="button" class="filter_btnn" data-toggle="modal" data-target="#filterAircraftModal">
+                <i class="fa fa-filter"></i> Filter
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Aircraft active</th>
+                <th>Aircraft capacity</th>
+                <th>Aircraft Registration</th>
+                <th>Max Cargo weight</th>
+                <th>Aircraft Type</th>
+                <th>Seatmap</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-toggle="modal" data-target="#editCellModal" data-id="1" data-name="Aircraft A" data-active="True">
+                <td><input type="checkbox"></td>
+                <td>12</td>
+                <td>DHC6</td>
+                <td>0</td>
+                <td>DHC6-A</td>
+                <td></td>
+            </tr>
+            <tr data-toggle="modal" data-target="#editCellModal" data-id="2" data-name="Aircraft B" data-active="False">
+                <td><input type="checkbox"></td>
+                <td>12</td>
+                <td>DHC6</td>
+                <td>0</td>
+                <td>DHC6-A</td>
+                <td></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Edit Cell Modal -->
+    <div class="modal fade" id="editCellModal" tabindex="-1" aria-labelledby="editCellModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCellModalLabel">Edit Aircraft Type</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCellForm" method="post" action="">
+                        {% csrf_token %}
+                        <div class="row mb-3">
+                            <div class="form-check">
+                                <label class="form-check-label" for="createAircraftActive">Aircraft active</label>
+                                <input type="checkbox" class="form-check-input active-box" id="createAircraftActive" name="active">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="{{ form.aircraft_registration.id_for_label }}">Aircraft Registration</label>
+                            </div>
+                            <div class="col-md-8">
+                                {{ form.aircraft_registration }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="{{ form.aircraft_capacity.id_for_label }}">Aircraft Capacity</label>
+                            </div>
+                            <div class="col-md-8">
+                                {{ form.aircraft_capacity }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="{{ form.aircraft_type.id_for_label }}">Aircraft Type</label>
+                            </div>
+                            <div class="col-md-8">
+                                {{ form.aircraft_type }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="{{ form.seatmap.id_for_label }}">Seat Map</label>
+                            </div>
+                            <div class="col-md-8">
+                                {{ form.seatmap }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="{{ form.max_cargo_weight.id_for_label }}">Max Cargo Weight</label>
+                            </div>
+                            <div class="col-md-8">
+                                {{ form.max_cargo_weight }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-4">
+                                <label for="{{ form.calendar_color.id_for_label }}">Calendar Color</label>
+                            </div>
+                            <div class="col-md-8">
+                                {{ form.calendar_color }}
+                            </div>
+                        </div>
+                        <button type="submit" class="save_btnn mt-3">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
+
+{% block script_block %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        $('#editCellModal').on('show.bs.modal', function (event) {
+            var button = $(event.relatedTarget);
+            var id = button.data('id');
+            var name = button.data('name');
+            var active = button.data('active') === 'True';
+
+            var modal = $(this);
+            modal.find('#createAircraftActive').prop('checked', active);
+            // populate other fields accordingly
+        });
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        // Assuming you want to show the modal immediately after page load
+        $('#editCellModal').modal('show');
+    });
+
+    document.addEventListener('DOMContentLoaded', function() {
+        const modal = document.getElementById('editCellModal');
+        const closeButton = modal.querySelector(".close");
+
+        closeButton.addEventListener("click", function () {
+            window.location.href = "{% url 'addaircraft' %}"; // Replace 'aircraft_list' with your actual URL name
+        });
+    });
+</script>
+{% endblock %}

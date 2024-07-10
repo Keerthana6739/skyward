@@ -1,0 +1,428 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+<div class="container mt-5">
+    <!-- Header with search bar and buttons -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="input-group w-50">
+            <input type="text" class="form-control" placeholder="Search...">
+           
+        </div>
+        
+        <div class="btn-group">
+            <button type="button" class="create_btn" data-toggle="modal" data-target="#createServiceLoadModal">
+                <i class="fa fa-plus"></i>   Create New
+            </button>
+            <button type="button" class="filter_btnn">
+                <i class="fa fa-arrow-down" style="opacity: 0.5;"></i>
+  Export
+            </button>
+            <button type="button" class="filter_btnn" data-toggle="modal" data-target="#filterServiceModal">
+                <i class="fa fa-filter"></i>  Filter
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead >
+            <tr>
+                <th>Service load active</th>
+                <th>service Qty</th>
+                <th>Service load name</th>
+                <th>Max Infants</th>
+                <th>Max Children</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-toggle="modal" data-target="#editServiceCellModal" data-id="1" data-name="Serviceload A" data-active="True">
+                <td><input type="checkbox"></td>
+                <td>1</td>
+                <td>bb service load</td>
+                <td>4</td>
+                <td>6</td>
+            </tr>
+            <tr data-toggle="modal" data-target="#editServiceCellModal" data-id="2" data-name="Serviceload B" data-active="False">
+                <td><input type="checkbox"   ></td>
+                <td>7</td>
+                <td>bb service load</td>
+                <td>4</td>
+                <td>6</td>
+            </tr>
+           
+        </tbody>
+    </table>
+
+    <!-- Create Aircraft Type Modal -->
+<!-- First Modal: Create Service Load -->
+<!-- First Modal: createServiceLoadModal -->
+
+<div class="modal fade" id="createServiceLoadModal" tabindex="-1" aria-labelledby="createServiceLoadModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createServiceLoadModalLabel">Create Service Load</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createServiceLoadForm" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <div class="form-check">
+                            <label class="form-check-label" for="createAircraftActive"><h5>Service Load active</h5></label>
+                            <input type="checkbox" class="form-check-input active-box" id="createAircraftActive" name="active">
+                        </div>
+
+            
+                        <label for="id_service_load_name">Service Load Name</label>
+                        {{ form.service_load_name }}
+                   
+                    
+                        <label for="id_service_qty">Service Quantity</label>
+                        {{ form.service_qty }}
+                  
+                    <div class="row">
+                        <div class=" col-md-6">
+                            <label for="id_max_children">Max Children</label>
+                            {{ form.max_children }}
+                        </div>
+                        <div class=" col-md-6">
+                            <label for="id_max_infants">Max Infants</label>
+                            {{ form.max_infants }}
+                        </div>
+                    </div>
+                    
+                        <label for="id_seat_map">Seat Map</label>
+                        {{ form.seat_map }}
+                    
+                    
+                        <label for="id_iata_identifier">IATA Identifier</label>
+                        {{ form.iata_identifier }}
+                    </div>
+                    <button type="button" class="btn btn-primary mt-3" id="saveServiceLoad">Save</button>
+                    
+                    <!-- Icon to show/hide the table -->
+                    <div class="mt-5">
+                        <h2>Service Load Details</h2>
+                        <a href="#" class="icon-box" id="toggleServiceLoadDetails">
+                            <i class="fa fa-plus" style="color: orangered;"></i>
+                        </a>
+                        <table class="table table-bordered" id="serviceLoadDetailsTable" style="display: none;">
+                            <thead>
+                                <tr>
+                                    <th>Cabin Type</th>
+                                    <th>Quantity</th>
+                                    <th>Max Children</th>
+                                    <th>Max Infants</th>
+                                </tr>
+                            </thead>
+                            <tbody class="bg-white">
+                                <!-- New rows will be added here -->
+                            </tbody>
+                        </table>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Second Modal: Add Cabin Details -->
+<div class="modal fade" id="addCabinDetailsModal" tabindex="-1" aria-labelledby="addCabinDetailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCabinDetailsModalLabel">Add Cabin Details</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="addCabinDetailsForm" method="post">
+                    {% csrf_token %}
+            
+                        <label for="cabinType"><h5>Cabin Type</h5></label>
+                        <input type="text" class="form-control" id="cabinType" name="cabin_type">
+                   
+            
+                        <label for="cabinQty"><h5>Quantity</h5></label>
+                        <input type="number" class="form-control" id="cabinQty" name="quantity">
+                    
+                    <div class="row">
+                        <div class="col-md-6">
+                            <label for="maxChildren"><h5>Max Children</h5></label>
+                            <input type="number" class="form-control" id="maxChildren" name="max_children">
+                        </div>
+                        <div class="col-md-6">
+                            <label for="maxInfants"><h5>Max Infants</h5></label>
+                            <input type="number" class="form-control" id="maxInfants" name="max_infants">
+                        </div>
+                    </div>
+                    <button type="button" class="btn btn-primary mt-3" id="saveCabinDetails">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Edit Cell Modal -->
+    <div class="modal fade" id="editServiceCellModal" tabindex="-1" aria-labelledby="editServiceCellModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCellModalLabel">Edit Service Load</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="createServiceLoadForm" method="post">
+                        {% csrf_token %}
+                        <div class="form-group">
+                            <div class="form-check">
+                                <label class="form-check-label" for="createAircraftActive"><h5>Service Load active</h5></label>
+                                <input type="checkbox" class="form-check-input active-box" id="createAircraftActive" name="active">
+                            </div>
+    
+                
+                            <label for="id_service_load_name">Service Load Name</label>
+                            {{ form.service_load_name }}
+                       
+                        
+                            <label for="id_service_qty">Service Quantity</label>
+                            {{ form.service_qty }}
+                      
+                        <div class="row">
+                            <div class=" col-md-6">
+                                <label for="id_max_children">Max Children</label>
+                                {{ form.max_children }}
+                            </div>
+                            <div class=" col-md-6">
+                                <label for="id_max_infants">Max Infants</label>
+                                {{ form.max_infants }}
+                            </div>
+                        </div>
+                        
+                            <label for="id_seat_map">Seat Map</label>
+                            {{ form.seat_map }}
+                        
+                        
+                            <label for="id_iata_identifier">IATA Identifier</label>
+                            {{ form.iata_identifier }}
+                        </div>
+                        <button type="button" class="btn btn-primary mt-3" id="saveServiceLoad">Save</button>
+                        
+                        <!-- Icon to show/hide the table -->
+                        <div class="mt-5">
+                            <h2>Service Load Details</h2>
+                            <a href="#" class="icon-box" id="toggleServiceLoadDetails">
+                                <i class="fa fa-plus" style="color: orangered;"></i>
+                            </a>
+                            <table class="table table-bordered" id="serviceLoadDetailsTable" >
+                                <thead>
+                                    <tr>
+                                        <th>Cabin Type</th>
+                                        <th>Quantity</th>
+                                        <th>Max Children</th>
+                                        <th>Max Infants</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="bg-white">
+                                    <!-- New rows will be added here -->
+                                </tbody>
+                            </table>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--filter-->
+<div class="modal fade" id="filterServiceModal" tabindex="-1" aria-labelledby="filterServiceModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title" id="filterServiceModalLabel">Filter Service Loads</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                
+                <form id="filterServiceForm" method="get" action="">
+                    <div class="">
+                        <div class="row">
+                            <div class="col-md-6">
+                        <label for="filterActiveStatus">Service load active</label>
+                        <div class="row">
+                            <div class="col-6">
+                        <select class="form-control" id="filterActiveStatus" name="active_status">
+                            <option value="">equal</option>
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select></div>
+                        <div class="col-6">
+                            <select class="form-control" id="filterActiveStatus" name="active_status">
+                                <option value="">All</option>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select></div>
+    
+
+                    </div>
+                    
+                    <div class="">
+                        <label for="filterSortBy">Service load name</label>
+                        <div class="row">
+                            <div class="col-6">
+                        <select class="form-control" id="filterSortBy" name="sort_by">
+                            <option value="">like</option>
+                            <option value="name_asc">Name (A-Z)</option>
+                            <option value="name_desc">Name (Z-A)</option>
+                        </select></div>
+                        <div class="col-6">
+                            <input type='text' class="form-control"></div>
+                    </div>
+                    </div>
+                    <div class="">
+                        <label for="filterSortBy">Service Qty</label>
+                        <div class="row">
+                            <div class="col-6">
+                        <select class="form-control" id="filterSortBy" name="sort_by">
+                            <option value="">equal</option>
+                            <option value="name_asc">Name (A-Z)</option>
+                            <option value="name_desc">Name (Z-A)</option>
+                        </select></div>
+                        <div class="col-6">
+                            <input type='text' class="form-control"></div>
+                    </div>
+                    </div></div>
+                    <div class="col-md-6">
+                        <label for="filterSortBy">Max Infants</label>
+                        <div class="row">
+                            <div class="col-6">
+                        <select class="form-control" id="filterSortBy" name="sort_by">
+                            <option value="">equal</option>
+                            <option value="name_asc">Name (A-Z)</option>
+                            <option value="name_desc">Name (Z-A)</option>
+                        </select></div>
+                        <div class="col-6">
+                            <input type='text' class="form-control"></div>
+                    </div>
+                 
+                    <div class="">
+                        <label for="filterSortBy">Max children</label>
+                        <div class="row">
+                            <div class="col-6">
+                        <select class="form-control" id="filterSortBy" name="sort_by">
+                            <option value="">equal</option>
+                            <option value="name_asc">Name (A-Z)</option>
+                            <option value="name_desc">Name (Z-A)</option>
+                        </select></div>
+                        <div class="col-6">
+                            <input type='text' class="form-control"></div>
+                    </div>
+                    </div></div>
+                    <div class="row ml-2">
+                        <div class="col-md-8">
+                            <h6>Filter Name:</h6>
+                            <p>If you wish to save this filter, write the name of the filter here and click 'Save filter'</p>
+                            <div class="row ">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" name="filter_name">
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" class="save_btnn mt-0">Save Filter</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-4 ">
+                            <button type="reset" class="cl_btn ">Clear Filter</button>
+                            <button type="submit" class="fil_btn">Quick Filter</button>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+{% block script_block %}
+
+<script>
+    // JavaScript for handling modal interactions
+    
+    // Function to show or hide the service load details table
+    $('#toggleServiceLoadDetails').on('click', function() {
+        $('#serviceLoadDetailsTable').toggle();
+        
+        // Toggle icon based on table visibility
+        var icon = $(this).find('i');
+        if ($('#serviceLoadDetailsTable').is(':visible')) {
+            icon.removeClass('fa-plus').addClass('fa-minus');
+        } else {
+            icon.removeClass('fa-minus').addClass('fa-plus');
+        }
+    });
+    
+    // Function to show the second modal and handle its save button
+    function showAddCabinDetailsModal() {
+        $('#addCabinDetailsModal').modal('show');
+    }
+    
+    // Function to handle saving cabin details and returning to the first modal
+    function saveCabinDetails() {
+        // Retrieve values from the form
+        const cabinType = document.getElementById('cabinType').value;
+        const cabinQty = document.getElementById('cabinQty').value;
+        const maxChildren = document.getElementById('maxChildren').value;
+        const maxInfants = document.getElementById('maxInfants').value;
+    
+        // Add the details to the table in the first modal
+        const table = document.getElementById('serviceLoadDetailsTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td>${cabinType}</td>
+            <td>${cabinQty}</td>
+            <td>${maxChildren}</td>
+            <td>${maxInfants}</td>
+        `;
+    
+        // Hide the second modal
+        $('#addCabinDetailsModal').modal('hide');
+    
+        // Show the first modal and scroll to it
+        $('#createServiceLoadModal').modal('show');
+        $('html, body').animate({
+            scrollTop: $('#createServiceLoadModal').offset().top
+        }, 500); // Adjust the scroll speed if needed
+    }
+    
+    // Event listener for the "Save" button in the second modal
+    document.getElementById('saveCabinDetails').addEventListener('click', saveCabinDetails);
+    
+    // Event listener for the "Save" button in the first modal
+    document.getElementById('saveServiceLoad').addEventListener('click', function() {
+        $('#createServiceLoadModal').modal('hide');
+        showAddCabinDetailsModal();
+        
+        // Scroll to the second modal
+        $('html, body').animate({
+            scrollTop: $('#addCabinDetailsModal').offset().top
+        }, 500); // Adjust the scroll speed if needed
+    });
+</script>
+    
+    
+{% endblock %}
+
+
+

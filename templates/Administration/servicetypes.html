@@ -1,0 +1,218 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+<div class="container-fluid mt-5">
+    <!-- Header with search bar and buttons -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="input-group w-50">
+            <input type="text" class="form-control" placeholder="Search...">
+        </div>
+        
+        <div class="btn-group">
+            <button type="button" class="create_btn" data-toggle="modal" data-target="#createServiceTypeModal">
+                <i class="fa fa-plus"></i> Create New
+            </button>
+            <button type="button" class="filter_btnn">
+                <i class="fa fa-arrow-down" style="opacity: 0.5;"></i> Export
+            </button>
+            <button type="button" class="filter_btnn" data-toggle="modal" data-target="#filterServiceTypeModal">
+                <i class="fa fa-filter"></i> No Filter Applied
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Active</th>
+                <th>Type Name</th>
+               
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-toggle="modal" data-target="#editServiceTypeModal" data-id="1" data-name="ServiceType A" data-active="True">
+               <td>1</td>
+               <td>Type A</td>
+             
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Create Service Type Modal -->
+    <div class="modal fade" id="createServiceTypeModal" tabindex="-1" aria-labelledby="createServiceTypeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createServiceTypeModalLabel">Create Service Type</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row ml-2">
+                            <div class="col-md-6">
+                              {{ form.active }}
+                                {{ form.active.label_tag }} 
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-6">
+                                {{ form.type_name.label_tag }} {{ form.type_name }}
+                            </div>
+                        
+                            <div class="col-md-6">
+                                {{ form.income_code.label_tag }} {{ form.income_code }}
+                            </div>
+                        </div>
+                        <div class="row ">
+                            <div class="col-md-12">
+                              <h6 class="text-primary">HTML Template</h6>
+                              <p>Edit your service template html view.</p>
+                              <p>Available words and information</p>
+                                {{ form.service_template.label_tag }} {{ form.service_template }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <button type="submit" class="save_btnn">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Service Type Modal -->
+    <div class="modal fade" id="editServiceTypeModal" tabindex="-1" aria-labelledby="editServiceTypeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editServiceTypeModalLabel">Edit Service Type</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="row mb-3 ml-2">
+                            <div class="col-md-6">
+                              {{ form.active }}
+                                {{ form.active.label_tag }} 
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-6">
+                                {{ form.type_name.label_tag }} {{ form.type_name }}
+                            </div>
+                       
+                            <div class="col-md-6">
+                                {{ form.income_code.label_tag }} {{ form.income_code }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                              <h6 class="text-primary">HTML Template</h6>
+                              <p>Edit your service template html view.</p>
+                              <p>Available words and information</p>
+                                {{ form.service_template.label_tag }} {{ form.service_template }}
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                            <div class="col-md-12">
+                                <button type="submit" class="save_btnn">Save</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Filter Modal -->
+    <div class="modal fade" id="filterServiceTypeModal" tabindex="-1" aria-labelledby="filterServiceTypeModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="filterServiceTypeModalLabel">Filter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="filterServiceTypeForm" method="get" action="">
+                        <div class="row mb-3">
+                            <label for="filterActiveStatus" class="col-form-label col-4">Active</label>
+                            <div class="col-4">
+                                <select class="form-control form-control-sm" id="filterActiveStatus" name="active_status">
+                                    <option value="">Equal</option>
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-4">
+                              <select class="form-control form-control-sm" id="filterActiveStatus" name="active_status">
+                                  <option value="">All</option>
+                                  <option value="true">Active</option>
+                                  <option value="false">Inactive</option>
+                              </select>
+                          </div>
+                        </div>
+                        <div class="row mb-3">
+                            <label for="filterTypeName" class="col-form-label col-4">Type Name</label>
+                            <div class="col-4">
+                              <select class="form-control form-control-sm" id="filterActiveStatus" name="active_status">
+                                  <option value="">Equal</option>
+                                  <option value="true">Active</option>
+                                  <option value="false">Inactive</option>
+                              </select>
+                          </div>
+                            <div class="col-4">
+                                <input type="text" class="form-control form-control-sm" id="filterTypeName" name="type_name">
+                            </div>
+                        </div>
+                        <div class="row mb-3">
+                          <label for="filterTypeName" class="col-form-label col-4">Income code</label>
+                          <div class="col-4">
+                            <select class="form-control form-control-sm" id="filterActiveStatus" name="active_status">
+                                <option value="">Equal</option>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div>
+                          <div class="col-4">
+                              <input type="text" class="form-control form-control-sm" id="filterTypeName" name="type_name">
+                          </div>
+                      </div>
+                        <div class="row mb-3">
+                            <div class="col-md-8">
+                                <h6>Filter Name:</h6>
+                                <p>If you wish to save this filter, write the name of the filter here and click 'Save filter'</p>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control" name="filter_name">
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="save_btnn mt-0">Save Filter</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <button type="reset" class="cl_btn">Clear Filter</button>
+                                <button type="submit" class="fil_btn">Quick Filter</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+{% block script_block %}
+<!-- Your custom JavaScript here -->
+{% endblock %}

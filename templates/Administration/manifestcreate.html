@@ -1,0 +1,542 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body_block %}
+
+<div class="container bg-white">
+   
+        
+        <!-- ManifestTemplateprintout Fields -->
+        <form method="post" class="form-group ">
+            {% csrf_token %}
+            
+            <div class="row ml-2">
+                <div class="col-md-4">
+                   
+                    {{ form.active }}
+                    {{ form.active.label_tag }}
+                  
+                   
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    {{ form.name.label_tag }}
+                    {{ form.name }}
+                </div>
+            
+                <div class="col-md-4">
+                    {{ form.code.label_tag }}
+                    {{ form.code }}
+                </div>
+            </div>
+            <h6 class="text-primary">Print/Email Template Headers</h6>
+            <div class="row">
+                <div class="col-md-4">
+                    {{ form.header_subject.label_tag }}
+                    {{ form.header_subject }}
+                </div>
+           
+                <div class="col-md-4">
+                    {{ form.filter_with_check_in_status.label_tag }}
+                    {{ form.filter_with_check_in_status }}
+                </div>
+            
+                <div class="col-md-4 pr-4">
+                    {{ form.show_only_ticketed }}
+                    {{ form.show_only_ticketed.label_tag }}
+                    
+                </div>
+            </div>
+            <div class="row mb-3">
+                <div class="col-md-4">
+                    {{ form.group_by.label_tag }}
+                    {{ form.group_by }}
+                </div>
+            
+                <div class="col-md-4">
+                    {{ form.filter_with_service_status.label_tag }}
+                    {{ form.filter_with_service_status }}
+                </div>
+         
+                <div class="col-md-4">
+                    {{ form.sub_header.label_tag }}
+                    {{ form.sub_header }}
+                </div>
+            </div>
+            
+          
+        
+        
+        <!-- PrintOutDetailsManifest form Fields -->
+        <h6 class="text-primary">Print Out Details Manifest</h6>
+        <p>Mark here the columns you wish to appear on the printout.</p>
+        {% csrf_token %}
+    
+        
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.num }}
+                {{ printout.num.label_tag }}
+                
+            </div>
+            <div class="col-md-4">
+                {{ printout.user_class }}
+                {{ printout.user_class.label_tag }}
+               
+            </div>
+        
+            <div class="col-md-4">   
+                {{ printout.check_in_status }}
+                {{ printout.check_in_status.label_tag }}
+             
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.seat }}
+                {{ printout.seat.label_tag }}
+               
+            </div>
+    
+            <div class="col-md-4">
+                {{ printout.date_of_birth }}
+                {{ printout.date_of_birth.label_tag }}
+               
+            </div>
+            <div class="col-md-4">
+                {{ printout.gender }}
+                {{ printout.gender.label_tag }}
+               
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.class_allowance }}
+                {{ printout.class_allowance.label_tag }}
+                
+            </div>
+            <div class="col-md-4">
+                {{ printout.passport_issue_country }}
+                {{ printout.passport_issue_country.label_tag }}
+               
+            </div>
+       
+            <div class="col-md-4">
+                {{ printout.pax_weight }}
+                {{ printout.pax_weight.label_tag }}
+                
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.trip_type }}
+                {{ printout.trip_type.label_tag }}
+                
+            </div>
+       
+            <div class="col-md-4">
+                {{ printout.boarding_tag_color }}
+                {{ printout.boarding_tag_color.label_tag }}
+                
+            </div>
+            <div class="col-md-4">
+                {{ printout.pax_name }}
+                {{ printout.pax_name.label_tag }}
+               
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.a_c }}
+                {{ printout.a_c.label_tag }}
+               
+            </div>
+            <div class="col-md-4">
+                {{ printout.title }}
+                {{ printout.title.label_tag }}
+               
+            </div>
+        
+            <div class="col-md-4">
+                {{ printout.e_mail }}
+                {{ printout.e_mail.label_tag }}
+               
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.cargo_weight }}
+                {{ printout.cargo_weight.label_tag }}
+               
+            </div>
+        
+            <div class="col-md-4">
+                {{ printout.show_document_code }}
+                {{ printout.show_document_code.label_tag }}
+               
+            </div>
+            <div class="col-md-4">
+                {{ printout.show_ancillary_services }}
+                {{ printout.show_ancillary_services.label_tag }}
+               
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.breakdown_block }}
+                {{ printout.breakdown_block.label_tag }}
+              
+            </div>
+            <div class="col-md-4">
+                {{ printout.passenger_remark }}
+                {{ printout.passenger_remark.label_tag }}
+               
+            </div>
+        
+            <div class="col-md-4">
+                {{ printout.baggage_tag }}
+                {{ printout.baggage_tag.label_tag }}
+               
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.pnr_ref }}
+                {{ printout.pnr_ref.label_tag }}
+               
+            </div>
+       
+            <div class="col-md-4">
+                {{ printout.splitfirstlast }}
+                {{ printout.splitfirstlast.label_tag }}
+               
+            </div>
+            <div class="col-md-4">
+                {{ printout.tkt_ref }}
+                {{ printout.tkt_ref.label_tag }}
+               
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.nop }}
+                {{ printout.nop.label_tag }}
+                
+            </div>
+            <div class="col-md-4">
+                {{ printout.passport_expiry }}
+                {{ printout.passport_expiry.label_tag }}
+                
+            </div>
+        
+            <div class="col-md-4">
+                {{ printout.breakrows }}
+                {{ printout.breakrows.label_tag }}
+                
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.show_ancillary_summary }}
+                {{ printout.show_ancillary_summary.label_tag }}
+               
+            </div>
+        
+            <div class="col-md-4">
+                {{ printout.show_check_in_summary }}
+                {{ printout.show_check_in_summary.label_tag }}
+               
+            </div>
+            <div class="col-md-4">
+                {{ printout.show_coupons }}
+                {{ printout.show_coupons.label_tag }}
+                
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+               
+                {{ printout.bgg_weight }}
+                {{ printout.bgg_weight.label_tag }}
+            </div>
+            <div class="col-md-4">
+                {{ printout.pnr_status }}
+                {{ printout.pnr_status.label_tag }}
+                
+            </div>
+       
+            <div class="col-md-4">
+                {{ printout.b_pass }}
+                {{ printout.b_pass.label_tag }}
+                
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.pay_ci }}
+                {{ printout.pay_ci.label_tag }}
+               
+            </div>
+       
+            <div class="col-md-4">
+                {{ printout.origin }}
+                {{ printout.origin.label_tag }}
+                
+            </div>
+            <div class="col-md-4">
+                {{ printout.doc_number }}
+                {{ printout.doc_number.label_tag }}
+               
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.show_ssr_totals }}
+                {{ printout.show_ssr_totals.label_tag }}
+               
+            </div>
+            <div class="col-md-4">
+                 {{ printout.show_ssr_remarks }}
+                {{ printout.show_ssr_remarks.label_tag }}
+               
+            </div>
+       
+            <div class="col-md-4">
+                {{ printout.show_ssr }}
+                {{ printout.show_ssr.label_tag }}
+                
+            </div>
+        </div>
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.phone }}
+                {{ printout.phone.label_tag }}
+               
+            </div>
+       
+            <div class="col-md-4">
+                {{ printout.place_of_birth }}
+                {{ printout.place_of_birth.label_tag }}
+              
+            </div>
+            <div class="col-md-4">
+                {{ printout.yyyymmdd_dates }}
+                {{ printout.yyyymmdd_dates.label_tag }}
+                
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.show_pnr_user_name_in_origin }}
+                {{ printout.show_pnr_user_name_in_origin.label_tag }}
+               
+            </div>
+            <div class="col-md-4">
+                {{ printout.nationality }}
+                {{ printout.nationality.label_tag }}
+                
+            </div>
+       
+            <div class="col-md-4">
+                {{ printout.pnr_remarks }}
+                {{ printout.pnr_remarks.label_tag }}
+               
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.crew_on_top }}
+                {{ printout.crew_on_top.label_tag }}
+               
+            </div>
+      
+            <div class="col-md-4">
+                {{ printout.pax_body_temp }}
+                {{ printout.pax_body_temp.label_tag }}
+               
+            </div>
+            <div class="col-md-4">
+                {{ printout.fare_basis }}
+                {{ printout.fare_basis.label_tag }}
+              
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{ printout.cow_weight }}
+                {{ printout.cow_weight.label_tag }}
+                
+            </div>
+            <div class="col-md-4">
+                {{ printout.cow_nop }}
+                {{ printout.cow_nop.label_tag }}
+               
+            </div>
+        
+
+        </div>
+        <h6 class="text-primary">Printout Bottom</h6>
+        <p>Mark here the columns you wish to appear on the printout.</p>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{printbottom.pax_total }}
+                {{printbottom.pax_total.label_tag }}
+                
+            </div>
+            <div class="col-md-4">
+                {{printbottom.pax_picks }}
+                {{printbottom.pax_picks.label_tag }}
+               
+            </div>
+       
+            <div class="col-md-4">
+                {{printbottom.pax_drops }}
+                {{printbottom.pax_drops.label_tag }}
+              
+            </div>
+        </div>
+    
+        <div class="row ml-2"> 
+            <div class="col-md-4">
+                {{printbottom.nop_total }}
+                {{printbottom.nop_total.label_tag }}
+                
+            </div>
+       
+            <div class="col-md-4">
+                {{printbottom.bgg_weight_total }}
+                {{printbottom.bgg_weight_total.label_tag }}
+                
+            </div>
+            <div class="col-md-4">
+                {{printbottom.pax_weight_total }}
+                {{printbottom.pax_weight_total.label_tag }}
+                
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{printbottom.pnr_on_rq }}
+                {{printbottom.pnr_on_rq.label_tag }}
+               
+            </div>
+            <div class="col-md-4">
+                {{printbottom.selected_crew }}
+                {{printbottom.selected_crew.label_tag }}
+               
+            </div>
+       
+            <div class="col-md-4">
+                {{printbottom.cargo_list }}
+                {{printbottom.cargo_list.label_tag }}
+                
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{printbottom.always_show_cargo }}
+                {{printbottom.always_show_cargo.label_tag }}
+                
+            </div>
+       
+            <div class="col-md-4">
+                {{printbottom.remarks }}
+                {{printbottom.remarks.label_tag }}
+               
+            </div>
+            <div class="col-md-4">
+                {{printbottom.text_crew }}
+                {{printbottom.text_crew.label_tag }}
+                
+            </div>
+        </div>
+    
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{printbottom.fuel }}
+                {{printbottom.fuel.label_tag }}
+               
+            </div>
+            <div class="col-md-4">
+                {{printbottom.routing }}
+                {{printbottom.routing.label_tag }}
+               
+            </div>
+       
+            <div class="col-md-4">
+                {{printbottom.cow_weight }}
+                {{printbottom.cow_weight.label_tag }}
+              
+            </div>
+        </div>
+        <div class="row ml-2">
+            <div class="col-md-4">
+                {{printbottom.cow_nop }}
+                {{printbottom.cow_nop.label_tag }}
+                
+            </div>
+        
+            <div class="col-md-4">
+                {{printbottom.signature }}
+                {{printbottom.signature.label_tag }}
+               
+            </div></div>
+            
+            <div class="row">
+                <div class="col-md-12">
+                    {{ printbottom.footer_text.label_tag }}
+                    <div id="editor">{{ printbottom.footer_text.value }}</div>
+                    {{ printbottom.footer_text }}
+                </div>
+            </div>
+        
+              
+          
+    
+        <div class="row">
+            <div class="col-md-12">
+                <button type="submit" class="save_btnn">Save</button>
+            </div>
+        </div>
+    </form>
+   
+</div>
+
+{% endblock %}
+{% block script_block %}
+<script src="https://cdn.ckeditor.com/ckeditor5/36.0.2/classic/ckeditor.js"></script>
+<script>
+    ClassicEditor
+        .create(document.querySelector('#editor'))
+        .then(editor => {
+            editor.setData(`{{ printbottom.footer_text.value }}`);
+            editor.model.document.on('change:data', () => {
+                document.querySelector('#id_printbottom-footer_text').value = editor.getData();
+            });
+        })
+        .catch(error => {
+            console.error(error);
+        });
+</script>
+
+{% endblock %}

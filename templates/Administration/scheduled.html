@@ -1,0 +1,397 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+<div class="container-fluid mt-5">
+    <!-- Header with search bar and buttons -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="input-group w-50">
+            <input type="text" class="form-control" placeholder="Search...">
+        </div>
+        <div class="btn-group">
+            <button type="button" class="create_btn" data-toggle="modal" data-target="#createReportPermissionModal">
+                <i class="fa fa-plus"></i> Create New
+            </button>
+            <button type="button" class="filter_btnn">
+                <i class="fa fa-arrow-down" style="opacity: 0.5;"></i> Export
+            </button>
+            <button type="button" class="filter_btnn" data-toggle="modal" data-target="#filterReportPermissionModal">
+                <i class="fa fa-filter"></i> No Filter Applied
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Active</th>
+                <th>User</th>
+                <th>Email To</th>
+                <th>Report</th>
+                <th>Time of day</th>
+                <th>Frequency</th>
+                <th>Timing</th>
+                <th>Send To</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-toggle="modal" data-target="#editReportPermissionModal" data-id="1" data-report="Report A">
+                <td>Report A</td>
+                <td>
+                   dtghy
+                </td>
+                <td>ftft</td>
+                <td>Report A</td>
+                <td>
+                   dtghy
+                </td>
+                <td>ftft</td><td>gggggg</td><td>fthy</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <!-- Create Report Permission Modal -->
+    <div class="modal fade" id="createReportPermissionModal" tabindex="-1" aria-labelledby="createReportPermissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="createReportPermissionModalLabel">Create Report Permission</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                       
+                        <div class="col-md-6 ml-2">
+                            {{ form.active }}
+                            {{ form.active.label_tag }}
+                           
+                        </div>
+                         <div class="row">
+                        <div class="col-md-6">
+                            {{ form.user.label_tag }}
+                            {{ form.user }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div></div> 
+                        <div class="row">
+                        <div class="col-md-6">
+                            {{ form.report.label_tag }}
+                            {{ form.report }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.time_of_day.label_tag }}
+                            {{ form.time_of_day }}
+                        </div></div>
+                        <div class="row">
+                        <div class="col-md-6">
+                            {{ form.frequency.label_tag }}
+                            {{ form.frequency }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.timing.label_tag }}
+                            {{ form.timing }}
+                        </div>
+                    </div>
+                    <div class="row">
+                       
+                        <div class="col-md-6">
+                            {{ form.sendto.label_tag }}
+                            {{ form.sendto }}
+                        </div></div>
+                        <button type="submit" class="save_btnn">Submit</button>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Edit Report Permission Modal -->
+    <div class="modal fade" id="editReportPermissionModal" tabindex="-1" aria-labelledby="editReportPermissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editReportPermissionModalLabel">Edit Report Permission</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post">
+                        {% csrf_token %}
+                       
+                        <div class="col-md-6 ml-2">
+                            {{ form.active }}
+                            {{ form.active.label_tag }}
+                           
+                        </div>
+                         <div class="row">
+                        <div class="col-md-6">
+                            {{ form.user.label_tag }}
+                            {{ form.user }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.email.label_tag }}
+                            {{ form.email }}
+                        </div></div> 
+                        <div class="row">
+                        <div class="col-md-6">
+                            {{ form.report.label_tag }}
+                            {{ form.report }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.time_of_day.label_tag }}
+                            {{ form.time_of_day }}
+                        </div></div>
+                        <div class="row">
+                        <div class="col-md-6">
+                            {{ form.frequency.label_tag }}
+                            {{ form.frequency }}
+                        </div>
+                        <div class="col-md-6">
+                            {{ form.timing.label_tag }}
+                            {{ form.timing }}
+                        </div>
+                    </div>
+                    <div class="row">
+                       
+                        <div class="col-md-6">
+                            {{ form.sendto.label_tag }}
+                            {{ form.sendto }}
+                        </div></div>
+                        <button type="submit" class="save_btnn">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Report Permission Modal -->
+    <div class="modal fade" id="filterReportPermissionModal" tabindex="-1" aria-labelledby="filterReportPermissionModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="filterReportPermissionModalLabel">Filter</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="filterDstRestrictForm" method="get" action="">
+                        <div class="row">
+                            <div class="col-md-6">
+                            <label for="filterActiveStatus1" class="col-form-label col-4">Active</label>
+                            <div class="row">
+                               
+                                <div class="col-6">
+                                    <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                        <option value="">equal</option>
+                                        <option value="true">Active</option>
+                                        <option value="false">Inactive</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                                        <option value="">All</option>
+                                        <option value="true">Active</option>
+                                        <option value="false">Inactive</option>
+                                    </select>
+                                   
+                                </div>
+                            </div></div>
+                            <div class="col-md-6">
+                                <label for="filterActiveStatus1" class="col-form-label col-6">User</label>
+                                <div class="row">
+                                   
+                                    <div class="col-6">
+                                        <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                            <option value="">equal</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">Inactive</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                                            <option value="">All</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">Inactive</option>
+                                        </select>
+                                       
+                                    </div>
+                                </div></div> </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                    <label for="filterActiveStatus1" class="col-form-label col-6">Email to</label>
+                                    <div class="row">
+                                       
+                                        <div class="col-6">
+                                            <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                                <option value="">equal</option>
+                                                <option value="true">Active</option>
+                                                <option value="false">Inactive</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-6">
+                                            <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                                                <option value="">All</option>
+                                                <option value="true">Active</option>
+                                                <option value="false">Inactive</option>
+                                            </select>
+                                           
+                                        </div></div></div>
+                                    
+                                    <div class="col-md-6">
+                                        <label for="filterActiveStatus1" class="col-form-label col-6">Report</label>
+                                        <div class="row">
+                                           
+                                            <div class="col-6">
+                                                <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                                    <option value="">equal</option>
+                                                    <option value="true">Active</option>
+                                                    <option value="false">Inactive</option>
+                                                </select>
+                                            </div>
+                                            <div class="col-6">
+                                                <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                                                    <option value="">All</option>
+                                                    <option value="true">Active</option>
+                                                    <option value="false">Inactive</option>
+                                                </select>
+                                               
+                                            </div>
+                                        </div></div></div>
+                                        <div class="row">
+                                            <div class="col-md-6">
+                                            <label for="filterActiveStatus1" class="col-form-label col-6">Time of day</label>
+                                            <div class="row">
+                                               
+                                                <div class="col-6">
+                                                    <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                                        <option value="">equal</option>
+                                                        <option value="true">Active</option>
+                                                        <option value="false">Inactive</option>
+                                                    </select>
+                                                </div>
+                                                <div class="col-6">
+                                                    <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                                                        <option value="">All</option>
+                                                        <option value="true">Active</option>
+                                                        <option value="false">Inactive</option>
+                                                    </select>
+                                                   
+                                                </div></div>
+                                            </div>
+                                            <div class="col-md-6">
+                            <label for="filterActiveStatus1" class="col-form-label col-6">frequency</label>
+                            <div class="row ">
+                               
+                                <div class="col-6">
+                                    <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                        <option value="">equal</option>
+                                        <option value="true">Active</option>
+                                        <option value="false">Inactive</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                                        <option value="">All</option>
+                                        <option value="true">Active</option>
+                                        <option value="false">Inactive</option>
+                                    </select>
+                                </div>
+                            </div></div></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                <label for="filterActiveStatus1" class="col-form-label col-6">Timing</label>
+                                <div class="row">
+                                   
+                                    <div class="col-6">
+                                        <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                            <option value="">equal</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">Inactive</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                                            <option value="">All</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">Inactive</option>
+                                        </select>
+                                       
+                                    </div>
+                                </div></div>
+                                <div class="col-md-6">
+                            <label for="filterActiveStatus1" class="col-form-label col-6">Send To</label>
+                            <div class="row ">
+                               
+                                <div class="col-6">
+                                    <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                        <option value="">equal</option>
+                                        <option value="true">Active</option>
+                                        <option value="false">Inactive</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <input type="text" id="filterNumber" name="number" class="form-control form-control-sm">
+                                </div>
+                            </div></div></div>
+                            <div class="row">
+                                <div class="col-md-6">
+                                <label for="filterActiveStatus1" class="col-form-label col-6">Send Today</label>
+                                <div class="row">
+                                   
+                                    <div class="col-6">
+                                        <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                            <option value="">equal</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">Inactive</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-6">
+                                        <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                                            <option value="">All</option>
+                                            <option value="true">Active</option>
+                                            <option value="false">Inactive</option>
+                                        </select>
+                                       
+                                    </div>
+                                </div>
+                            </div></div>
+                          
+                          
+                       
+                        
+                            
+                    
+                            <div class="row">
+                                <div class="col-md-8">
+                                    <h6>Filter Name:</h6>
+                                    <p>If you wish to save this filter, write the name of the filter here and click 'Save filter'</p>
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <input type="text" class="form-control" name="filter_name">
+                                        </div>
+                                        <div class="col-6">
+                                            <button type="submit" class="save_btnn mt-0">Save Filter</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-4 ">
+                                    <button type="reset" class="cl_btn ">Clear Filter</button>
+                                    <button type="submit" class="fil_btn">Quick Filter</button>
+                                </div>
+                            </div>
+                    </form>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

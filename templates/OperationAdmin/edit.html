@@ -1,0 +1,309 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+<div class="card col-2  bg-white p-3">
+   <h6>Status</h6>
+   
+        <div class="col-md-4">
+            {{ form.active }}
+            {{ form.active.label_tag }}
+           
+          </div>
+    
+</div>
+<div class="container-fluid bg-white mt-4">
+<h6 class="text-primary">Basic Info</h6>   
+
+
+
+<form method="post">
+    {% csrf_token %}
+    <!-- form fields here -->
+    <div class="row mb-3 ml-2">
+        <div class="col-md-3">
+            {{ form.show_on_web }}
+            {{ form.show_on_web.label_tag }}
+           
+          </div>
+          <div class="col-md-3">
+            {{ form.father }}
+            {{ form.father.label_tag }}
+           
+          </div>
+          <div class="col-md-3">
+            {{ form.charge_tax_on_infant }}
+            {{ form.charge_tax_on_infant.label_tag }}
+           
+          </div>
+          <div class="col-md-3">
+            {{ form.block_from_pre_book }}
+            {{ form.block_from_pre_book.label_tag }}
+           
+          </div>
+
+    </div>
+
+    <div class="row mb-3">
+        <div class="col-md-4">
+            {{ form.code.label_tag }}
+            {{ form.code }}
+          </div>
+          <div class="col-md-4">
+            {{ form.name.label_tag }}
+            {{ form.name }}
+          </div>
+          <div class="col-md-4">
+            {{ form.lat.label_tag }}
+            {{ form.lat }}
+          </div>
+    </div>
+
+    <div class="row mb-3 ">
+        <div class="col-md-4">
+            {{ form.country.label_tag }}
+            {{ form.country }}
+          </div>
+          <div class="col-md-4">
+            {{ form.code.label_tag }}
+            {{ form.code }}
+          </div>
+          <div class="col-md-4">
+            {{ form.time_zone.label_tag }}
+            {{ form.time_zone }}
+          </div>
+    </div>
+    <div class="line"></div>
+    
+<h6 class="text-primary mt-3">Print / email template Headers</h6>
+<p>Son destination of father destination.Each father destination can have many destination</p>
+   <div class="row mb-3">
+    <div class="col-md-4">
+        {{ form.father_code.label_tag }}
+        {{ form.father_code }}
+      </div>
+      <div class="col-md-4">
+        {{ form.country.label_tag }}
+        {{ form.country }}
+      </div>
+      <div class="col-md-4 mt-4">
+       
+        {{ form.allow_strip_change }}
+        {{ form.allow_strip_change.label_tag }}
+      </div>
+   </div>
+
+   <div class="line"></div>
+   <h6 class="text-primary mt-3">CRS Availability</h6>
+   <p>Tick for destination to be for CRS system bookings</p>
+   <div class="row mb-3 ml-2">
+    <div class="col-md-4">
+        {{ form.show }}
+        {{ form.show.label_tag }}
+        
+      </div>
+      <div class="col-md-4">
+       
+        {{ form.accommodation_mandatory }}
+        {{ form.accommodation_mandatory.label_tag }}
+      </div>
+   </div>
+
+   <div class="row mb-3 ">
+    <div class="col-md-4">
+        {{ form.lat.label_tag }}
+        {{ form.lat }}
+      </div>
+      <div class="col-md-4">
+        {{ form.order.label_tag }}
+        {{ form.order }}
+      </div>
+   </div>
+
+   <div class="line"></div>
+
+   <h6 class="text-primary mt-2">Travel Requirements</h6>
+   <div class="row mb-3 ">
+    <div class="col-md-4">
+        {{ form.baggage_allowance.label_tag }}
+        {{ form.baggage_allowance }}
+      </div>
+      <div class="col-md-4">
+        {{ form.checkin_time_min.label_tag }}
+        {{ form.checkin_time_min }}
+      </div>
+      <div class="col-md-4 mt-4">
+        {{ form.block_online_seat_selection }}
+        {{ form.block_online_seat_selection.label_tag }}
+      
+      </div>
+   </div>
+   <div class="row mb-3 ">
+    <div class="col-md-4">
+        {{ form.online_checkin_open_min.label_tag }}
+        {{ form.online_checkin_open_min }}
+      </div>
+      <div class="col-md-4">
+        {{ form.web_min_booking_interval_min.label_tag }}
+        {{ form.web_min_booking_interval_min }}
+      </div>
+   </div>
+
+   <div class="row mb-3 ">
+    <div class="col-md-4">
+        {{ form.min_passenger.label_tag }}
+        {{ form.min_passenger }}
+      </div>
+      <div class="col-md-4">
+        {{ form.online_checkin_close_min.label_tag }}
+        {{ form.online_checkin_close_min }}
+      </div>
+
+   </div>
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        {{ form.web_min_booking_interval_min.label_tag }}
+        {{ form.web_min_booking_interval_min }}
+      </div>
+      <div class="col-md-4">
+        {{ form.bar_code_version.label_tag }}
+        {{ form.bar_code_version }}
+      </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        {{ form.boarding_time_minutes.label_tag }}
+        {{ form.boarding_time_minutes }}
+      </div>
+      <div class="col-md-4">
+        {{ form.baggage_drop_min.label_tag }}
+        {{ form.baggage_drop_min }}
+      </div>
+</div>
+
+<div class="row mb-3">
+    <div class="col-md-4">
+        {{ form.gate_closing_min.label_tag }}
+        {{ form.gate_closing_min }}
+      </div>
+      <div class="col-md-4">
+        {{ form.airport_control_min.label_tag }}
+        {{ form.airport_control_min }}
+      </div>
+</div>
+<div class="line"></div>
+<h6 class="text-primary mt-2">GDS/LDS Selection</h6>
+<p>Select the destination from the drop-down list,if it is not available,contact support to add it.</p>
+<div class="row mb-3">
+    <div class="col-md-4">
+        {{ form.destination_id.label_tag }}
+        {{ form.destination_id }}
+      </div>
+</div>
+<div class="line"></div>
+
+<h6 class="text-primary mt-2">PNL/ADL</h6>
+<p>Pax list file in IATA format,that will be sent to the e-mail address or the SITA address,changes for SITA apply per message</p>
+<div class="row mb-3">
+    <div class="col-md-4">
+        {{ form.pnl_timing.label_tag }}
+        {{ form.pnl_timing }}
+      </div>
+      <div class="col-md-4">
+        {{ form.adl_timing.label_tag }}
+        {{ form.adl_timing }}
+      </div>
+      <div class="col-md-4">
+        {{ form.pal_timing.label_tag }}
+        {{ form.pal_timing }}
+      </div>
+      
+</div>
+<div class="row mb-3 ml-2">
+    
+      <div class="col-md-3">
+        {{ form.send_pal_cal }}
+        {{ form.send_pal_cal.label_tag }}
+       
+      </div>
+      <div class="col-md-3">
+        {{ form.adl_continuous }}
+        {{ form.adl_continuous.label_tag }}
+       
+      </div>
+      <div class="col-md-3">
+        {{ form.use_icao_code_with_flight_number }}
+        {{ form.use_icao_code_with_flight_number.label_tag }}
+        
+      </div>
+      <div class="col-md-3">
+        {{ form.send_crew_msg }}
+        {{ form.send_crew_msg.label_tag }}
+       
+      </div>
+</div>
+
+<div class="row mb-3">
+<div class="col-md-4">
+    {{ form.sita_address_es.label_tag }}
+    {{ form.sita_address_es }}
+  </div>
+
+
+  <div class="col-md-4">
+    {{ form.http_address_es.label_tag }}
+    {{ form.http_address_es }}
+  </div></div>
+  <div class="row mb-3">
+  <div class="col-md-4">
+    {{ form.pal_cal_sita_address_es.label_tag }}
+    {{ form.pal_cal_sita_address_es }}
+  </div>
+  <div class="col-md-4">
+    {{ form.pal_cal_e_mail_s.label_tag }}
+    {{ form.pal_cal_e_mail_s }}
+  </div>
+</div>
+
+<div class="line"></div>
+
+
+<h6 class="text-primary mt-2">Movement tracking</h6>
+<p>This option allows you to send information about actual flight data changes.</p>
+<div class="row mb-3">
+  <div class="col-md-4">
+    {{ form.email.label_tag }}
+    {{ form.email }}
+  </div>
+  <div class="col-md-4">
+    {{ form.template.label_tag }}
+    {{ form.template }}
+  </div>
+</div>
+
+<div class="line"></div>
+
+<h6 class="text-primary mt-2">Sightseeing setup</h6>
+<p>This option allows you to setup a destination for sightseeing.</p>
+<div class="row mb-3 ml-2">
+  <div class="col-md-4">
+    {{ form.sightseeing }}
+    {{ form.sightseeing.label_tag }}
+   
+  </div>
+  <div class="col-md-4">
+    {{ form.return_destination.label_tag }}
+    {{ form.return_destination }}
+  </div>
+</div>
+
+ <div class="row">
+      <div class="col-12">
+        <button type="submit" class="save_btnn">Save</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+{% endblock %}

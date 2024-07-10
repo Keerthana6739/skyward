@@ -1,0 +1,287 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+ 
+
+<div class="container mt-5">
+    <!-- Header with search bar and buttons -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="input-group w-50">
+            <input type="text" class="form-control" placeholder="Search...">
+           
+        </div>
+        
+        <div class="btn-group">
+            <a href=" {% url 'manifestcreate' %}">
+            <button type="button" class="create_btn"  >
+                <i class="fa fa-plus"></i>   Create New
+            </button></a>
+            <button type="button" class="filter_btnn">
+                <i class="fa fa-arrow-down" style="opacity: 0.5;"></i>
+  Export
+            </button>
+            <button type="button" class="filter_btnn" data-toggle="modal" data-target="#filterDestinationModal" >
+                <i class="fa fa-filter"></i>  Filter
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead >
+            <tr>
+                
+                <th>Active</th>
+                <th>Block from pre book</th>
+                <th>Show on</th>
+                <th>Name</th>
+                <th>Father Code</th>
+                <th>Charge tax on father infant</th>
+                <th>Father Destination</th>
+                <th>Baggage Allowance</th>
+                <th>Destination</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-url="{% url 'manifestedit' %}">
+                <td>Aircraft A</td>
+                <td>true</td>
+                <td>1</td>
+                <td>gfstt</td>
+                <td>jsj</td>
+                <td>true</td>
+                <td>1</td>
+                <td>gfstt</td>
+                <td>jsj</td>
+            </tr>
+           
+           
+        </tbody>
+    </table>
+
+ 
+
+
+  
+<!--filter-->
+
+              <div class="modal fade " id="filterDestinationModal" tabindex="-1" aria-labelledby="filterDestinationModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                <h5 class="modal-title" id="filterDestinationModalLabel">Filter Destination</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="filterDestinationForm container" method="get" action="">
+                  <div class="">
+                    <div class="row">
+                    <div class="col-md-6">
+                    <label for="filterActiveStatus1" class="col-form-label l-head col-6">Show COW</label>
+                    <div class="row ">
+                       
+                        <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                <option value="">equal</option>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                                <option value="">All</option>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label for="filterSortBy1" class="col-form-label col-6">Cow Weight</label>
+                    <div class="row ">
+                      
+                        <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterSortBy1" name="sort_by1">
+                                <option value="">equal</option>
+                                <option value="name_asc">Name (A-Z)</option>
+                                <option value="name_desc">Name (Z-A)</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                          <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                            <option value="">All</option>
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
+                        </div>
+                    </div>
+                    <label for="filterSortBy1" class="col-form-label col-6">COW NOP</label>
+                    <div class="row ">
+                      
+                        <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterSortBy1" name="sort_by1">
+                                <option value="">equal</option>
+                                <option value="name_asc">Name (A-Z)</option>
+                                <option value="name_desc">Name (Z-A)</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                          <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                            <option value="">All</option>
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
+                        </div>
+                    </div>
+                    <label for="filterFromDate" class="col-form-label col-6">Active</label>
+                    <div class="row ">
+                       
+                        <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterFromDateSort" name="sort_by2">
+                                <option value="">equal</option>
+                                <option value="name_asc">Name (A-Z)</option>
+                                <option value="name_desc">Name (Z-A)</option>
+                            </select> </div>
+                            <div class="col-6">
+                       
+                        <select class="form-control form-control-sm" id="filterACType" name="ac_type">
+                            <option value="">All</option>
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <label for="filterToDate" class="col-form-label col-6">Name</label>
+                    <div class="row ">
+                        
+                        <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterToDateSort" name="sort_by3">
+                                <option value="">equal</option>
+                                <option value="name_asc">Name (A-Z)</option>
+                                <option value="name_desc">Name (Z-A)</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                          <input type="text" id="filterMiles" name="miles" class="form-control form-control-sm">
+                    </div></div>
+                   </div>
+                    <div class="col-md-6">
+                      <label for="filterACType" class="col-form-label col-6">Header/Subject</label>
+                      <div class="row ">
+                          
+                          <div class="col-6">
+                              <select class="form-control form-control-sm" id="filterACTypeSort" name="sort_by4">
+                                  <option value="">equal</option>
+                                  <option value="name_asc">Name (A-Z)</option>
+                                  <option value="name_desc">Name (Z-A)</option>
+                              </select>
+                          </div>
+                          <div class="col-6">
+                            <input type="text" id="filterMiles" name="miles" class="form-control form-control-sm">
+                          </div>
+                      </div>
+                    <label for="filterMiles" class="col-form-label col-6">Filter with Check-in Status</label>
+            
+                    <div class="row ">
+                        <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterMilesSort" name="sort_by5">
+                                <option value="">like</option>
+                                <option value="name_asc">Name (A-Z)</option>
+                                <option value="name_desc">Name (Z-A)</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                           
+                            <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                              <option value="">All</option>
+                              <option value="true">Active</option>
+                              <option value="false">Inactive</option>
+                          </select>
+                        </div>
+                    </div>
+                    <label for="filterHours" class="col-form-label col-6">Filter With Service Status</label>
+                    <div class="row ">
+                        
+                        <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterHoursSort" name="sort_by6">
+                                <option value="">equal</option>
+                                <option value="name_asc">Name (A-Z)</option>
+                                <option value="name_desc">Name (Z-A)</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                        <select class="form-control form-control-sm" id="filterACType" name="ac_type">
+                            <option value="">All</option>
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select></div>
+                    </div>
+                    <label for="filterHours" class="col-form-label col-6">Code</label>
+                    <div class="row ">
+                      
+                        <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterHoursSort" name="sort_by6">
+                                <option value="">equal</option>
+                                <option value="name_asc">Name (A-Z)</option>
+                                <option value="name_desc">Name (Z-A)</option>
+                            </select>
+                        </div>
+                        <div class="col-6">
+                          <input type="text" id="filterMiles" name="miles" class="form-control form-control-sm">
+                    </div></div>
+                   
+                   
+                </div></div>
+                    <div class="row">
+                        <div class="col-md-8">
+                            <h6>Filter Name:</h6>
+                            <p>If you wish to save this filter, write the name of the filter here and click 'Save filter'</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="text" class="form-control form-control-sm" name="filter_name">
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" class="save_btnn mt-0">Save Filter</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 ">
+                            <button type="reset" class="cl_btn ">Clear Filter</button>
+                            <button type="submit" class="fil_btn">Quick Filter</button>
+                        </div>
+                    </div>
+                </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+{% endblock %}
+{% block script_block %}
+<script>
+    $('#editCellModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var name = button.data('name');
+        var active = button.data('active') === 'True';
+
+        var modal = $(this);
+        modal.find('#aircraftId').val(id);
+        modal.find('#aircraftName').val(name);
+        modal.find('#aircraftActive').prop('checked', active);
+    });
+</script>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        const rows = document.querySelectorAll("tr[data-url]");
+        rows.forEach(row => {
+            row.addEventListener("click", function() {
+                window.location.href = this.dataset.url;
+            });
+        });
+    });
+</script>
+    
+{% endblock %}

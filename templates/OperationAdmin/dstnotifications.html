@@ -1,0 +1,590 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+<div class="container-fluid mt-5">
+    <!-- Header with search bar and buttons -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="input-group w-50">
+            <input type="text" class="form-control" placeholder="Search...">
+           
+        </div>
+        
+        <div class="btn-group">
+            <button type="button" class="create_btn" data-toggle="modal" data-target="#createDstNotificationModal">
+                <i class="fa fa-plus"></i>   Create New
+            </button>
+            <button type="button" class="filter_btnn">
+                <i class="fa fa-arrow-down" style="opacity: 0.5;"></i>
+  Export
+            </button>
+            <button type="button" class="filter_btnn" data-toggle="modal" data-target="#filterDstNotificationModal">
+                <i class="fa fa-filter"></i>  Filter
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead >
+            <tr>
+                <th>Active</th>
+                <th>Show on</th>
+                <th>Destination</th>
+                <th>Service From</th>
+                <th>To</th>
+                <th>Show on seat control</th>
+                <th>Notification</th>
+                <th>Ref templates</th>
+                <th>PNR Screen</th>
+                <th>Agents CRS availability screen</th>
+                <th>Users availability screen</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-toggle="modal" data-target="#editDstNotificationCellModal" data-id="1" data-name="DstNotification A" data-active="True">
+                <td><input type="checkbox"></td>
+                <td>Both origin</td>
+                <td>Vilnius</td>
+                <td>07-Mar-21</td>
+                <td>25-Mar-21</td>
+                <td><input type="checkbox"></td>
+                <td>Cheap prices</td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+
+            </tr>
+            <tr data-toggle="modal" data-target="#editDstNotificationCellModal" data-id="2" data-name="DstNotification B" data-active="False">
+                <td><input type="checkbox"></td>
+                <td>Both origin</td>
+                <td>Vilnius</td>
+                <td>07-Mar-21</td>
+                <td>25-Mar-21</td>
+                <td><input type="checkbox"></td>
+                <td>Cheap prices</td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+                <td><input type="checkbox"></td>
+            </tr>
+           
+        </tbody>
+    </table>
+
+    <!-- Create Aircraft Type Modal -->
+
+
+<div class="modal fade" id="createDstNotificationModal" tabindex="-1" aria-labelledby="createDstNotificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createDstNotificationModalLabel">Create DST Notifications</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form method="post" class="container">
+                    {% csrf_token %}
+                    
+                     
+                    <div class="row">
+                        <div class="col-md-6">
+                            {{ form.active.label_tag }}
+                            {{ form.active }}
+                          </div>
+                   </div>
+                    
+                    <div class="row">
+                      
+                      <div class="col-md-6">
+                        {{ form.service_from.label_tag }}
+                        {{ form.service_from }}
+                      </div>
+                      <div class="col-md-6">
+                        {{ form.service_to.label_tag }}
+                        {{ form.service_to }}
+                      </div>
+                    </div>
+                    <div class="row">
+                     
+                        <div class="col-md-6">
+                            {{ form.destination.label_tag }}
+                            {{ form.destination }}
+                          </div> 
+                   
+                      <div class="col-md-6">
+                        {{ form.showon.label_tag }}
+                        {{ form.showon }}
+                      </div>
+                      
+                    </div>
+                    <div class="row">
+                    <div class="col-md-12
+                    ">
+                        {{ form.notification.label_tag }}
+                        {{ form.notification }}
+                      </div> </div>
+                    
+                    <div class="row">
+                      <div class="col-md-6">
+                        {{ form.color.label_tag }}
+                        {{ form.color }}
+                      </div>
+                      <div class="col-md-6">
+                        {{ form.font_size.label_tag }}
+                        {{ form.font_size }}
+                      </div>
+                    </div>
+                    <div class="row ">
+                      <div class="col-md-6">
+                        {{ form.bold.label_tag }}
+                        {{ form.bold }}
+                      </div>
+                      <div class="col-md-6">
+                        {{ form.user_availability_screen.label_tag }}
+                        {{ form.user_availability_screen }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        {{ form.agents_crs_availability_screen.label_tag }}
+                        {{ form.agents_crs_availability_screen }}
+                      </div>
+                      <div class="col-md-6">
+                        {{ form.PNR_screen.label_tag }}
+                        {{ form.PNR_screen }}
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-md-6">
+                        {{ form.ref_template.label_tag }}
+                        {{ form.ref_template }}
+                      </div>
+                      <div class="col-md-6">
+                        {{ form.show_on_seatcontrol.label_tag }}
+                        {{ form.show_on_seatcontrol }}
+                      </div>
+                    </div>
+                    
+                    <div class="row">
+                      <div class="col-md-12">
+                        <button type="submit" class="save_btnn">Save</button>
+                      </div>
+                    </div>
+                  </form>
+                  
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+    <!-- Edit Cell Modal -->
+    <div class="modal fade" id="editDstNotificationCellModal" tabindex="-1" aria-labelledby="editDstNotificationCellModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+    
+                    <h5 class="modal-title" id="editDstNotificationCellModalLabel">Edit DST Notifications</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" class="container">
+                        {% csrf_token %}
+                        
+                         <div class="row">
+                            <div class="col-md-6">
+                                {{ form.active.label_tag }}
+                                {{ form.active }}
+                              </div>
+                       </div>
+                        
+                        <div class="row">
+                          
+                          <div class="col-md-6">
+                            {{ form.service_from.label_tag }}
+                            {{ form.service_from }}
+                          </div>
+                          <div class="col-md-6">
+                            {{ form.service_to.label_tag }}
+                            {{ form.service_to }}
+                          </div>
+                        </div>
+                        <div class="row">
+                         
+                            <div class="col-md-6">
+                                {{ form.destination.label_tag }}
+                                {{ form.destination }}
+                              </div> 
+                       
+                          <div class="col-md-6">
+                            {{ form.showon.label_tag }}
+                            {{ form.showon }}
+                          </div>
+                          
+                        </div>
+                        <div class="row">
+                        <div class="col-md-12
+                        ">
+                            {{ form.notification.label_tag }}
+                            {{ form.notification }}
+                          </div> </div>
+                        
+                        <div class="row">
+                          <div class="col-md-6">
+                            {{ form.color.label_tag }}
+                            {{ form.color }}
+                          </div>
+                          <div class="col-md-6">
+                            {{ form.font_size.label_tag }}
+                            {{ form.font_size }}
+                          </div>
+                        </div>
+                        <div class="row ">
+                          <div class="col-md-6">
+                            {{ form.bold.label_tag }}
+                            {{ form.bold }}
+                          </div>
+                          <div class="col-md-6">
+                            {{ form.user_availability_screen.label_tag }}
+                            {{ form.user_availability_screen }}
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            {{ form.agents_crs_availability_screen.label_tag }}
+                            {{ form.agents_crs_availability_screen }}
+                          </div>
+                          <div class="col-md-6">
+                            {{ form.PNR_screen.label_tag }}
+                            {{ form.PNR_screen }}
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-md-6">
+                            {{ form.ref_template.label_tag }}
+                            {{ form.ref_template }}
+                          </div>
+                          <div class="col-md-6">
+                            {{ form.show_on_seatcontrol.label_tag }}
+                            {{ form.show_on_seatcontrol }}
+                          </div>
+                        </div>
+                        
+                        <div class="row">
+                          <div class="col-md-12">
+                            <button type="submit" class="save_btnn">Submit</button>
+                          </div>
+                        </div>
+                      </form>
+                      
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--filter-->
+<div class="modal fade" id="filterDstNotificationModal" tabindex="-1" aria-labelledby="filterDstNotificationModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-xl">
+        <div class="modal-content">
+            <div class="modal-header">
+
+                <h5 class="modal-title " id="filterDstNotificationModalLabel">Filter DST Notifications</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="filterDstNotificationForm" method="get" action="">
+                    <div class="">
+                        <div class="row">
+                        <div class="col-md-6">
+                        <label for="filterActiveStatus1" class="col-form-label l-head col-6">Active</label>
+                        <div class="row ">
+                           
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterActiveStatus1" name="active_status1">
+                                    <option value="">equal</option>
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterActiveStatus2" name="active_status2">
+                                    <option value="">All</option>
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+                            </div>
+                        </div>
+                        <label for="filterSortBy1" class="col-form-label col-6">Service From</label>
+                        <div class="row ">
+                          
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterSortBy1" name="sort_by1">
+                                    <option value="">equal</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <input type="date" id="filterFromDate" name="from_date" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <label for="filterSortBy1" class="col-form-label col-6">To</label>
+                        <div class="row ">
+                          
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterSortBy1" name="sort_by1">
+                                    <option value="">equal</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <input type="date" id="filterFromDate" name="from_date" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <label for="filterFromDate" class="col-form-label col-6">Destination</label>
+                        <div class="row ">
+                           
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterFromDateSort" name="sort_by2">
+                                    <option value="">equal</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select> </div>
+                                <div class="col-6">
+                           
+                            <select class="form-control form-control-sm" id="filterACType" name="ac_type">
+                                <option value="">All</option>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div>
+                    </div>
+                    <label for="filterToDate" class="col-form-label col-6">Show on</label>
+                        <div class="row ">
+                            
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterToDateSort" name="sort_by3">
+                                    <option value="">equal</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterACType" name="ac_type">
+                                <option value="">All</option>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div></div>
+                        <label for="filterACType" class="col-form-label col-6">Show on seat control</label>
+                        <div class="row ">
+                            
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterACTypeSort" name="sort_by4">
+                                    <option value="">equal</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterACType" name="ac_type">
+                                    <option value="">All</option>
+                                    <option value="true">Active</option>
+                                    <option value="false">Inactive</option>
+                                </select>
+                            </div>
+                        </div></div>
+                        <div class="col-md-6">
+                        <label for="filterMiles" class="col-form-label col-6">Notification</label>
+                
+                        <div class="row ">
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterMilesSort" name="sort_by5">
+                                    <option value="">like</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                                <input type="text" id="filterMiles" name="miles" class="form-control form-control-sm">
+                            </div>
+                        </div>
+                        <label for="filterHours" class="col-form-label col-6">Ref templates</label>
+                        <div class="row ">
+                            
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterHoursSort" name="sort_by6">
+                                    <option value="">equal</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterACType" name="ac_type">
+                                <option value="">All</option>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select></div>
+                        </div>
+                        <label for="filterHours" class="col-form-label col-6">PNR Screen</label>
+                        <div class="row ">
+                          
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterHoursSort" name="sort_by6">
+                                    <option value="">equal</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterACType" name="ac_type">
+                                <option value="">All</option>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div></div>
+                        <label for="filterHours" class="col-12">Agents CRS availability screen</label>
+                        <div class="row">
+                           
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterHoursSort" name="sort_by6">
+                                    <option value="">equal</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterACType" name="ac_type">
+                                <option value="">All</option>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div> </div>
+                        <label for="filterHours" class="col-form-label col-12">Users availability screen</label>
+                        <div class="row ">
+                           
+                            <div class="col-6">
+                                <select class="form-control form-control-sm" id="filterHoursSort" name="sort_by6">
+                                    <option value="">equal</option>
+                                    <option value="name_asc">Name (A-Z)</option>
+                                    <option value="name_desc">Name (Z-A)</option>
+                                </select>
+                            </div>
+                            <div class="col-6">
+                            <select class="form-control form-control-sm" id="filterACType" name="ac_type">
+                                <option value="">All</option>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select>
+                        </div></div>
+                    </div></div>
+                        <div class="row">
+                            <div class="col-md-8">
+                                <h6>Filter Name:</h6>
+                                <p>If you wish to save this filter, write the name of the filter here and click 'Save filter'</p>
+                                <div class="row">
+                                    <div class="col-6">
+                                        <input type="text" class="form-control form-control-sm" name="filter_name">
+                                    </div>
+                                    <div class="col-6">
+                                        <button type="submit" class="save_btnn mt-0">Save Filter</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-4 ">
+                                <button type="reset" class="cl_btn ">Clear Filter</button>
+                                <button type="submit" class="fil_btn">Quick Filter</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+                
+                
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+{% block script_block %}
+
+<script>
+    // JavaScript for handling modal interactions
+    
+    // Function to show or hide the service load details table
+    $('#toggleServiceLoadDetails').on('click', function() {
+        $('#serviceLoadDetailsTable').toggle();
+        
+        // Toggle icon based on table visibility
+        var icon = $(this).find('i');
+        if ($('#serviceLoadDetailsTable').is(':visible')) {
+            icon.removeClass('fa-plus').addClass('fa-minus');
+        } else {
+            icon.removeClass('fa-minus').addClass('fa-plus');
+        }
+    });
+    
+    // Function to show the second modal and handle its save button
+    function showAddCabinDetailsModal() {
+        $('#addCabinDetailsModal').modal('show');
+    }
+    
+    // Function to handle saving cabin details and returning to the first modal
+    function saveCabinDetails() {
+        // Retrieve values from the form
+        const cabinType = document.getElementById('cabinType').value;
+        const cabinQty = document.getElementById('cabinQty').value;
+        const maxChildren = document.getElementById('maxChildren').value;
+        const maxInfants = document.getElementById('maxInfants').value;
+    
+        // Add the details to the table in the first modal
+        const table = document.getElementById('serviceLoadDetailsTable').getElementsByTagName('tbody')[0];
+        const newRow = table.insertRow();
+        newRow.innerHTML = `
+            <td>${cabinType}</td>
+            <td>${cabinQty}</td>
+            <td>${maxChildren}</td>
+            <td>${maxInfants}</td>
+        `;
+    
+        // Hide the second modal
+        $('#addCabinDetailsModal').modal('hide');
+    
+        // Show the first modal and scroll to it
+        $('#createServiceLoadModal').modal('show');
+        $('html, body').animate({
+            scrollTop: $('#createServiceLoadModal').offset().top
+        }, 500); // Adjust the scroll speed if needed
+    }
+    
+    // Event listener for the "Save" button in the second modal
+    document.getElementById('saveCabinDetails').addEventListener('click', saveCabinDetails);
+    
+    // Event listener for the "Save" button in the first modal
+    document.getElementById('saveServiceLoad').addEventListener('click', function() {
+        $('#createServiceLoadModal').modal('hide');
+        showAddCabinDetailsModal();
+        
+        // Scroll to the second modal
+        $('html, body').animate({
+            scrollTop: $('#addCabinDetailsModal').offset().top
+        }, 500); // Adjust the scroll speed if needed
+    });
+</script>
+    
+    
+{% endblock %}
+
+
+

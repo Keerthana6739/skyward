@@ -1,0 +1,498 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+
+<div class="container-fluid">
+
+<div class="col-md-4">
+    <div class="card card1">
+      <div class="row no-gutters">
+        <div class="col-md-6 position-relative">
+          <div class="card-body">
+            <h6>Status</h6>
+            <div class="d-flex justify-content-start">
+              <div class="form-check mr-3">
+                <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault1">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Active
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault1" id="flexRadioDefault2" checked>
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Inactive
+                </label>
+              </div>
+            </div>
+          </div>
+      
+        </div>
+            <div class="divider"></div>
+        <div class="col-md-6">
+          <div class="card-body">
+            <h6>2FA Required</h6>
+            <div class="d-flex justify-content-start">
+              <div class="form-check mr-3">
+                <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadio1">
+                <label class="form-check-label" for="flexRadio1">
+                  On
+                </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="radio" name="flexRadioDefault2" id="flexRadio2" checked>
+                <label class="form-check-label" for="flexRadio2">
+                  Off
+                </label>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div></div>
+
+<!--Form-->
+  <div class="container-fluid mt-5">
+  
+        <div class="col-md-12">
+            <div class="card ">
+                <div class="card-body">
+                    <h5 class="card-title text-primary">Basic Info</h5>
+                    <form>
+                        <div class="form-row d-flex">
+                            <div class="form-group col-md-3">
+                                <label for="username">Username</label>
+                                <input type="text" class="form-control" id="username" placeholder="First name">
+                            </div>
+                            <div class="form-group col-md-3">
+                                <label for="email">Email Id</label>
+                                <input type="email" class="form-control" id="email" placeholder="Enter the Mail id">
+                            </div>
+                        </div>
+                        <div class="form-row d-flex">
+                            <div class="form-group col-md-4">
+                                <label for="password">Password</label>
+                                <input type="password" class="form-control" id="password" placeholder="Enter password">
+                            </div>
+                       
+                        
+                            <div class="form-group col-md-4 d-flex align-items-center">
+                                <div class="form-check">
+                                    <p style="font-size: small;">Required password change on Login</p>
+                                    <input class="form-check-input " type="checkbox" id="change-password">
+                                    <label class="form-check-label" for="change-password">
+                                        Required
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="form-group col-md-2">
+                                <label for="login-attempts">Login Attempts</label>
+                                <input type="text" class="form-control col-2" id="login-attempts">
+                            </div>
+                            <div class="form-group col-md-2 d-flex align-items-center">
+                                <div class="form-check">
+                                    <p>User 2FA Enabled</p>
+                                    <input class="form-check-input" type="checkbox" id="2fa-enabled">
+                                    <label class="form-check-label" for="2fa-enabled">
+                                        Not Enabled
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-row d-flex">
+                            <div class="form-group col-md-4">
+                                <label for="identifier">Identifier</label>
+                                <input type="text" class="form-control" id="identifier" placeholder="Enter identifier">
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="time-zone">Time Zone</label>
+                                <select class="form-control" id="time-zone">
+                                    <option value="">Select time zone</option>
+                                    <option value="UTC-12:00">UTC-12:00</option>
+                                    <option value="UTC-11:00">UTC-11:00</option>
+                                    <option value="UTC-10:00">UTC-10:00</option>
+                                    <option value="UTC-09:00">UTC-09:00</option>
+                                    <option value="UTC-08:00">UTC-08:00</option>
+                                    <option value="UTC-07:00">UTC-07:00</option>
+                                    <option value="UTC-06:00">UTC-06:00</option>
+                                    <option value="UTC-05:00">UTC-05:00</option>
+                                    <option value="UTC-04:00">UTC-04:00</option>
+                                    <option value="UTC-03:00">UTC-03:00</option>
+                                    <option value="UTC-02:00">UTC-02:00</option>
+                                    <option value="UTC-01:00">UTC-01:00</option>
+                                    <option value="UTC+00:00">UTC+00:00</option>
+                                    <option value="UTC+01:00">UTC+01:00</option>
+                                    <option value="UTC+02:00">UTC+02:00</option>
+                                    <option value="UTC+03:00">UTC+03:00</option>
+                                    <option value="UTC+04:00">UTC+04:00</option>
+                                    <option value="UTC+05:00">UTC+05:00</option>
+                                    <option value="UTC+06:00">UTC+06:00</option>
+                                    <option value="UTC+07:00">UTC+07:00</option>
+                                    <option value="UTC+08:00">UTC+08:00</option>
+                                    <option value="UTC+09:00">UTC+09:00</option>
+                                    <option value="UTC+10:00">UTC+10:00</option>
+                                    <option value="UTC+11:00">UTC+11:00</option>
+                                    <option value="UTC+12:00">UTC+12:00</option>
+                                </select>
+                            </div>
+                            <div class="form-group col-md-4">
+                                <label for="address">Address</label>
+                                <input type="text" class="form-control" id="address" placeholder="Enter address">
+                            </div>
+                        </div>
+                    </form>
+                
+                <div><h5 class="card-title text-primary">Permission Details</h5>
+                  <form>
+                      <div class="form-row d-flex">
+                          <div class="form-group col-md-3">
+                              <label for="username">Username</label>
+                              <input type="text" class="form-control" id="username" placeholder="First name">
+                          </div>
+                 </div>
+              </div>
+              <div>
+                <h5 class="text-primary">Booking Related Permission</h5>
+                <div class="row">
+                  <div class="col-3">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="checkbox1">
+                          <label class="form-check-label" for="checkbox1">
+                            Set TTL
+                          </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkbox1">
+                        <label class="form-check-label" for="checkbox1">
+                         Allow Split PNR
+                        </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="checkbox1">
+                      <label class="form-check-label" for="checkbox1">
+                       Allow Coupon use
+                      </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox1">
+                    <label class="form-check-label" for="checkbox1">
+                      Book Only Direct
+                    </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="checkbox1">
+                  <label class="form-check-label" for="checkbox1">
+                   Allow RQ bookings
+                  </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox1">
+                <label class="form-check-label" for="checkbox1">
+                  TKT RQ bookings
+                </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="checkbox1">
+              <label class="form-check-label" for="checkbox1">
+                Allow Validity change
+              </label>
+          </div>
+                  </div>
+                  <div class="col-3">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="checkbox2">
+                          <label class="form-check-label" for="checkbox2">
+                             Cancel past tickets 
+                          </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkbox2">
+                        <label class="form-check-label" for="checkbox2">
+                            Allow PNR Lock
+                        </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="checkbox2">
+                      <label class="form-check-label" for="checkbox2">
+                          Allow Ticketing
+                      </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox2">
+                    <label class="form-check-label" for="checkbox2">
+                       See all for agents
+                    </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="checkbox2">
+                  <label class="form-check-label" for="checkbox2">
+                      Show circuit buttons
+                  </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox2">
+                <label class="form-check-label" for="checkbox2">
+                  Allow reinstate
+                </label>
+            </div>
+            <div class="form-group row">
+              <label for="login-attempts" class="col-sm-6 col-form-label">Login Attempts</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" id="login-attempts">
+              </div>
+          </div>
+                  </div>
+                  <div class="col-3">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="checkbox3">
+                          <label class="form-check-label" for="checkbox3">
+                              TKT Pax change
+                          </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkbox3">
+                        <label class="form-check-label" for="checkbox3">
+                           AIPNR master key
+                        </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="checkbox3">
+                      <label class="form-check-label" for="checkbox3">
+                        Allow split PNR
+                      </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox3">
+                    <label class="form-check-label" for="checkbox3">
+                        Send sms
+                    </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="checkbox3">
+                  <label class="form-check-label" for="checkbox3">
+                    Allow pay@ci
+                  </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox3">
+                <label class="form-check-label" for="checkbox3">
+                    Allow split PNR
+                </label>
+            </div>
+            <div class="form-group row">
+              <label for="login-attempts" class="col-sm-6 col-form-label">TTL Change Limit</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" id="login-attempts">
+              </div>
+          </div>
+                  </div>
+                  <div class="col-3">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="checkbox4">
+                          <label class="form-check-label" for="checkbox4">
+                              set TTL
+                          </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkbox4">
+                        <label class="form-check-label" for="checkbox4">
+                            Allow Split PNR
+                        </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="checkbox4">
+                      <label class="form-check-label" for="checkbox4">
+                        Allow Split PNR
+                      </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox4">
+                    <label class="form-check-label" for="checkbox4">
+                      Allow Split PNR
+                    </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="checkbox4">
+                  <label class="form-check-label" for="checkbox4">
+                    Allow Split PNR
+                  </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox4">
+                <label class="form-check-label" for="checkbox4">
+                  Allow Split PNR
+                </label>
+            </div>
+                  </div>
+              </div>
+              </div>
+
+              <div>
+                <h5 class="text-primary">Service Related Permission</h5>
+                <div class="row">
+                  <div class="col-3">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="checkbox1">
+                          <label class="form-check-label" for="checkbox1">
+                            Set TTL
+                          </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkbox1">
+                        <label class="form-check-label" for="checkbox1">
+                         Allow Split PNR
+                        </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="checkbox1">
+                      <label class="form-check-label" for="checkbox1">
+                        Allow Split PNR
+                      </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox1">
+                    <label class="form-check-label" for="checkbox1">
+                      Allow Split PNR
+                    </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="checkbox1">
+                  <label class="form-check-label" for="checkbox1">
+                    Allow Split PNR
+                  </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox1">
+                <label class="form-check-label" for="checkbox1">
+                  Allow Split PNR
+                </label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="checkbox1">
+              <label class="form-check-label" for="checkbox1">
+                Allow Split PNR
+              </label>
+          </div>
+                  </div>
+                  <div class="col-3">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="checkbox2">
+                          <label class="form-check-label" for="checkbox2">
+                             Cancel past tickets 
+                          </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkbox2">
+                        <label class="form-check-label" for="checkbox2">
+                            Allow PNR Lock
+                        </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="checkbox2">
+                      <label class="form-check-label" for="checkbox2">
+                          Allow Ticketing
+                      </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox2">
+                    <label class="form-check-label" for="checkbox2">
+                       See all for agents
+                    </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="checkbox2">
+                  <label class="form-check-label" for="checkbox2">
+                      Show circuit buttons
+                  </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox2">
+                <label class="form-check-label" for="checkbox2">
+                  Allow reinstate
+                </label>
+            </div>
+            <div class="form-group row">
+              <label for="login-attempts" class="col-sm-6 col-form-label">Login Attempts</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" id="login-attempts">
+              </div>
+          </div>
+          
+                  </div>
+                  <div class="col-3">
+                      <div class="form-check">
+                          <input class="form-check-input" type="checkbox" id="checkbox3">
+                          <label class="form-check-label" for="checkbox3">
+                              TKT Pax change
+                          </label>
+                      </div>
+                      <div class="form-check">
+                        <input class="form-check-input" type="checkbox" id="checkbox3">
+                        <label class="form-check-label" for="checkbox3">
+                           AIPNR master key
+                        </label>
+                    </div>
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" id="checkbox3">
+                      <label class="form-check-label" for="checkbox3">
+                        Allow split PNR
+                      </label>
+                  </div>
+                  <div class="form-check">
+                    <input class="form-check-input" type="checkbox" id="checkbox3">
+                    <label class="form-check-label" for="checkbox3">
+                        Send sms
+                    </label>
+                </div>
+                <div class="form-check">
+                  <input class="form-check-input" type="checkbox" id="checkbox3">
+                  <label class="form-check-label" for="checkbox3">
+                    Allow pay@ci
+                  </label>
+              </div>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox3">
+                <label class="form-check-label" for="checkbox3">
+                    Allow split PNR
+                </label>
+            </div>
+            <div class="form-group row">
+              <label for="login-attempts" class="col-sm-6 col-form-label">TTL Change Limit</label>
+              <div class="col-sm-2">
+                  <input type="text" class="form-control" id="login-attempts">
+              </div>
+          </div>
+                  </div>
+                 
+              </div>
+              </div>
+              <div>
+              <h5 class="text-primary">Other Permission</h5>
+              <div class="form-check">
+                <input class="form-check-input" type="checkbox" id="checkbox4">
+                <label class="form-check-label" for="checkbox4">
+                Set TTL <input type="text" class="form-control" id="username" placeholder=" Enter the filter name">
+                </label>
+                
+            </div>
+            <div class="form-check">
+              <input class="form-check-input" type="checkbox" id="checkbox4">
+              <label class="form-check-label" for="checkbox4">
+              Allow split PNR
+              </label>
+
+          </div>
+          <button class="button">Save</button>
+          <button class="button">Cancel</button>
+          </div>
+
+        </div>
+
+
+    </div>
+    
+  </div>
+
+    
+
+{% endblock %}

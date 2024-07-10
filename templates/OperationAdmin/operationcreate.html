@@ -1,0 +1,196 @@
+{% extends 'base.html' %}
+{% block body_block %}
+{% load static %}
+ 
+
+<div class="container mt-5">
+    <!-- Header with search bar and buttons -->
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="input-group w-50">
+            <input type="text" class="form-control" placeholder="Search...">
+           
+        </div>
+        
+        <div class="btn-group">
+            <button type="button" class="create_btn" data-toggle="modal" data-target="#createAircraftTypeModal">
+                <i class="fa fa-plus"></i>   Create New
+            </button>
+            <button type="button" class="filter_btnn">
+                <i class="fa fa-arrow-down" style="opacity: 0.5;"></i>
+  Export
+            </button>
+            <button type="button" class="filter_btnn" data-toggle="modal" data-target="#filterAircraftModal">
+                <i class="fa fa-filter"></i>  Filter
+            </button>
+        </div>
+    </div>
+
+    <!-- Table -->
+    <table class="table table-hover">
+        <thead >
+            <tr>
+                <th>Name</th>
+                <th>Active</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr data-toggle="modal" data-target="#editCellModal" data-id="1" data-name="Aircraft A" data-active="True">
+                <td>Aircraft A</td>
+                <td>true</td>
+            </tr>
+            <tr data-toggle="modal" data-target="#editCellModal" data-id="2" data-name="Aircraft B" data-active="False">
+                <td>Aircraft B</td>
+                <td>false</td>
+            </tr>
+           
+        </tbody>
+    </table>
+
+    <!-- Create Aircraft Type Modal -->
+   
+<div class="modal fade" id="createAircraftTypeModal" tabindex="-1" aria-labelledby="createAircraftTypeModal" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="createAircraftTypeModalLabel">Create Aircraft Type</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="createAircraftTypeForm" method="post" action="">
+                    {% csrf_token %}
+                    <div class="form-check">
+                        <label class="form-check-label" for="createAircraftActive"><h5>Active</h5></label>
+                        <input type="checkbox" class="form-check-input active-box" id="createAircraftActive" name="active">
+                    </div>
+                    <div class="form-group">
+                        <label for="createAircraftName"><h5>Name</h5></label>
+                        <input type="text" class="form-control" id="createAircraftName" name="name">
+                    </div>
+                   
+                    <button type="button" class="save_btnn" id="saveAircraftType">Save</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+    <!-- Edit Cell Modal -->
+    <div class="modal fade" id="editCellModal" tabindex="-1" aria-labelledby="editCellModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editCellModalLabel">Edit Aircraft Type</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form id="editCellForm" method="post" action="">
+                        {% csrf_token %}
+                      
+                        <div class="form-check">
+                            <label class="form-check-label" for="createAircraftActive"><h5>Active</5></label>
+                                <input type="checkbox" class="form-check-input active-box" id="createAircraftActive" name="active">
+                        </div>
+                        <div class="form-group">
+                            <label for="aircraftName"><h5>Name</h5></label>
+                            <input type="text" class="form-control" id="aircraftName" name="name">
+                        </div>
+                      
+                        <button type="submit" class="save_btnn mt-3">Save</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--filter-->
+<div class="modal fade" id="filterAircraftModal" tabindex="-1" aria-labelledby="filterAircraftModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="filterAircraftModalLabel">Filter Aircraft Types</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="filterAircraftForm" method="get" action="">
+                    <div class="">
+                        <label for="filterActiveStatus">Active</label>
+                        <div class="row">
+                            <div class="col-4">
+                        <select class="form-control" id="filterActiveStatus" name="active_status">
+                            <option value="">equal</option>
+                            <option value="true">Active</option>
+                            <option value="false">Inactive</option>
+                        </select></div>
+                        <div class="col-4">
+                            <select class="form-control" id="filterActiveStatus" name="active_status">
+                                <option value="">All</option>
+                                <option value="true">Active</option>
+                                <option value="false">Inactive</option>
+                            </select></div>
+    
+
+                    </div>
+                    </div>
+                    <div class="">
+                        <label for="filterSortBy">Name</label>
+                        <div class="row">
+                            <div class="col-4">
+                        <select class="form-control" id="filterSortBy" name="sort_by">
+                            <option value="">like</option>
+                            <option value="name_asc">Name (A-Z)</option>
+                            <option value="name_desc">Name (Z-A)</option>
+                        </select></div>
+                        <div class="col-4">
+                            <input type='text'></div>
+                    </div>
+                    </div>
+                    <div class="row mt-2">
+                        <div class="col-md-8">
+                            <h6>Filter Name:</h6>
+                            <p>If you wish to save this filter, write the name of the filter here and click 'Save filter'</p>
+                            <div class="row">
+                                <div class="col-6">
+                                    <input type="text" class="form-control" name="filter_name">
+                                </div>
+                                <div class="col-6">
+                                    <button type="submit" class="save_btnn mt-0">Save Filter</button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4 mt-4 ">
+                            <button type="reset" class="cl_btn ">Clear Filter</button>
+                            <button type="submit" class="fil_btn">Quick Filter</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+</div>
+
+{% endblock %}
+{% block script_block %}
+<script>
+    $('#editCellModal').on('show.bs.modal', function (event) {
+        var button = $(event.relatedTarget);
+        var id = button.data('id');
+        var name = button.data('name');
+        var active = button.data('active') === 'True';
+
+        var modal = $(this);
+        modal.find('#aircraftId').val(id);
+        modal.find('#aircraftName').val(name);
+        modal.find('#aircraftActive').prop('checked', active);
+    });
+</script>
+
+    
+{% endblock %}
